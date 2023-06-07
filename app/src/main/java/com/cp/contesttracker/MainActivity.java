@@ -15,28 +15,31 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
-    private List<Contest> contestList = null;
+    private RecyclerView recyclerView;
+    private ContestAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         FetchContest fetchContest = new FetchContest();
         fetchContest.fetchAPI(this, this);
+
 
     }
 
 
     @Override
     public void onContestFetch(List<Contest> contestList) {
-        Log.e("Err==========","kaj korena");
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
 
-        ContestAdapter adapter = new ContestAdapter(contestList, getApplication());
+        adapter = new ContestAdapter(contestList, getApplication());
         recyclerView.setAdapter(adapter);
 
     }

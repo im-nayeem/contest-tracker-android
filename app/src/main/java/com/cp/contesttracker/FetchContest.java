@@ -21,15 +21,14 @@ import java.util.List;
 
 public class FetchContest {
 
-    private List<Contest> contestList = null;
+    private List<Contest> contestList;
 
     public void fetchAPI(final Context context, final FetchCallBack callBack) {
 
+        contestList  = new ArrayList<>();
 
         try {
-
-
-            String url = "https://clist.by/api/v2/contest/?format=json&upcoming=true&format_time=true&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
+            String url = "https://clist.by/api/v2/contest/?format=json&upcoming=true&host=codeforces.com&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -40,14 +39,14 @@ public class FetchContest {
                         JSONArray jsonArray = response.getJSONArray("objects");
                         JSONObject temp = null;
 
-//                        int last = Math.min(jsonArray.length(),50);
+                        int last = Math.min(jsonArray.length(),50);
 
-                        for(int i=0; i<3; i++)
+                        for(int i=0; i<last; i++)
                         {
                            temp = (JSONObject) jsonArray.get(i);
-                           Log.e("Res: ---------------- ", temp.getString("event"));
-//                            Toast.makeText(context,temp.getString("event"),Toast.LENGTH_LONG);
-                           contestList.add(new Contest("Contest","time","host"));
+
+                           contestList.add(new Contest( temp.getString("event"), temp.getString("start"),
+                                   temp.getString("host")));
                         }
 
                         callBack.onContestFetch(contestList);
