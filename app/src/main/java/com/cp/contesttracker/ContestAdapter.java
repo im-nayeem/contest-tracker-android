@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +39,7 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         final int index = viewHolder.getAdapterPosition();
         viewHolder.name.setText(contestList.get(position).getName());
         viewHolder.time.setText(contestList.get(position).getTime());
-        viewHolder.onlineJudge.setText(contestList.get(position).getOnlineJudge());
+        viewHolder.host.setText(contestList.get(position).getHost());
     }
 
     @Override

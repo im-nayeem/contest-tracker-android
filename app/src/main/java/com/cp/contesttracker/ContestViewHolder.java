@@ -9,17 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 // ViewHolder class for recycler view
 
 public class ContestViewHolder extends RecyclerView.ViewHolder {
+    View view;
     TextView name;
     TextView time;
-    TextView onlineJudge;
-    View view;
+    TextView host;
 
     public ContestViewHolder(@NonNull View itemView) {
         super(itemView);
 
         name = itemView.findViewById(R.id.contestName);
         time = itemView.findViewById(R.id.contestTime);
-        onlineJudge = itemView.findViewById(R.id.onlineJudge);
+        host = itemView.findViewById(R.id.host);
         view = itemView;
     }
 }

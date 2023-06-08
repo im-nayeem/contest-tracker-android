@@ -2,26 +2,28 @@ package com.cp.contesttracker;
 
 // Data Class(Model) to hold data for a single contest
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Contest {
     private String name = null;
     private String time = null;
-    private String onlineJudge = null;
+    private String host = null;
     private String contestLink = null;
 
-    public Contest(String name, String time, String onlineJudge, String contestLink) {
+    private static String[] hostList = {"CodeForces", "CodeChef", "AtCoder", "TopCoder", "Toph", "LeetCode", "CodeJam", "HackerCup", "KickStart"};
+
+    public Contest(String name, String time, String host, String contestLink) {
         this.name = name;
         this.time = time;
-        this.onlineJudge = onlineJudge;
+        this.host = host;
         this.contestLink = contestLink;
     }
 
-    public Contest(String name, String time, String onlineJudge) {
+    public Contest(String name, String time, String host) {
         this.name = name;
         this.time = time;
-        this.onlineJudge = onlineJudge;
+        this.host = host;
     }
 
 
@@ -33,8 +35,8 @@ public class Contest {
         return time;
     }
 
-    public String getOnlineJudge() {
-        return onlineJudge;
+    public String getHost() {
+        return host;
     }
 
     public String getContestLink() {
@@ -42,29 +44,36 @@ public class Contest {
     }
 
 
-    public static List<Contest> getContestList(){
-        List<Contest> temp = new ArrayList<>();
+    public static String[] getHostList(){
+        return hostList;
+    }
 
-        temp.add(new Contest("Codeforces Round #566","06/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-2 #567","07/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-3 #568","08/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("AtCoder Beginner Contest","09/06/23 | 6:00 PM","AtCoder"));
+    public static HashMap<String,String> getHostNameToLink(){
 
-        temp.add(new Contest("Codeforces Round #566","06/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-2 #567","07/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-3 #568","08/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("AtCoder Beginner Contest","09/06/23 | 6:00 PM","AtCoder"));
+        HashMap<String, String> hostNameToLink = new HashMap<>();
 
-        temp.add(new Contest("Codeforces Round #566","06/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-2 #567","07/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-3 #568","08/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("AtCoder Beginner Contest","09/06/23 | 6:00 PM","AtCoder"));
+        hostNameToLink.put("CodeForces","codeforces.com");
+        hostNameToLink.put("CodeChef", "codechef.com");
+        hostNameToLink.put("TopCoder", "topcoder.com");
+        hostNameToLink.put("Toph", "toph.co");
+        hostNameToLink.put("LeetCode", "leetcode.com");
+        hostNameToLink.put("CodeJam", "codingcompetitions.withgoogle.com/codejam");
+        hostNameToLink.put("HackerCup", "facebook.com/hackercup");
+        hostNameToLink.put("KickStart", "codingcompetitions.withgoogle.com/kickstart");
+        hostNameToLink.put("AtCoder", "atcoder.jp");
 
-        temp.add(new Contest("Codeforces Round #566","06/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-2 #567","07/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("Codeforces DIV-3 #568","08/06/23 | 8:30 PM","Codeforces"));
-        temp.add(new Contest("AtCoder Beginner Contest","09/06/23 | 6:00 PM","AtCoder"));
+        return hostNameToLink;
+    }
 
-        return temp;
+    public static HashMap<String, String> getLinkToHostName(){
+        HashMap<String, String> linkToHostName = new HashMap<>();
+
+        HashMap<String, String> hostNametolink = getHostNameToLink();
+
+        for (Map.Entry<String, String> entry : hostNametolink.entrySet()) {
+            linkToHostName.put(entry.getValue(), entry.getKey());
+        }
+
+        return linkToHostName;
     }
 }
