@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 // Main Activity class(Controller)
@@ -17,9 +21,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     private RecyclerView recyclerView;
-    private ContestAdapter adapter;
+    private ContestAdapter contestAdapter;
 
-    private List<Contest> contestList = null;
+    private HashMap<String, List<Contest>> allContestList = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +39,21 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         FetchContest fetchContest = new FetchContest();
         fetchContest.fetchAPI(this, this);
 
-        setSpinner();
 
 
     }
 
 
     @Override
-    public void onContestFetch(List<Contest> contestList) {
+    public void onContestFetch(HashMap<String, List<Contest>> allContestList) {
 
-        this.contestList = contestList;
-        adapter = new ContestAdapter(contestList, getApplication());
-        recyclerView.setAdapter(adapter);
+        this.allContestList = allContestList;
+
+        contestAdapter = new ContestAdapter(allContestList.get("All"), getApplication());
+        recyclerView.setAdapter(contestAdapter);
+
+        setSpinner();
+
 
     }
 
@@ -62,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
 
         final Spinner spinner = findViewById(R.id.filter_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -70,7 +78,12 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = (String) parent.getItemAtPosition(position);
-                // Do something with the selected item
+
+                if (allContestList.containsKey(selectedItem)) {
+                    contestAdapter.updateData(allContestList.get(selectedItem));
+                    contestAdapter.notifyDataSetChanged();
+                }
+
             }
 
 

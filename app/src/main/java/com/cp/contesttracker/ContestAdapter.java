@@ -46,4 +46,9 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     public int getItemCount() {
         return contestList.size();
     }
+
+    public void updateData(List<Contest> lst)
+    {
+        this.contestList = lst;
+    }
 }

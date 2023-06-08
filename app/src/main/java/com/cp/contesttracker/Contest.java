@@ -2,6 +2,8 @@ package com.cp.contesttracker;
 
 // Data Class(Model) to hold data for a single contest
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +68,7 @@ public class Contest {
     }
 
     public static HashMap<String, String> getLinkToHostName(){
+
         HashMap<String, String> linkToHostName = new HashMap<>();
 
         HashMap<String, String> hostNametolink = getHostNameToLink();

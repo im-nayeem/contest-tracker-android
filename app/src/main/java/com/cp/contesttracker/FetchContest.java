@@ -17,21 +17,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 
 public class FetchContest {
 
-    private List<Contest> contestList = null;
+    private HashMap<String,List<Contest>> contestList = null;
 
     public void fetchAPI(final Context context, final FetchCallBack callBack) {
 
-        contestList  = new ArrayList<>();
+        contestList  = new HashMap<>();
 
         try {
-            String url = "https://clist.by/api/v2/contest/?format=json&format_time=true&upcoming=true&time_zone=asia_dhaka&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
+            final String url = "https://clist.by/api/v2/contest/?format=json&format_time=true&upcoming=true&time_zone=asia_dhaka&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -39,24 +40,38 @@ public class FetchContest {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
+
                             JSONArray jsonArray = response.getJSONArray("objects");
                             JSONObject temp = null;
 
                             int last = Math.min(jsonArray.length(),100);
 
-                            HashMap<String, String> linkToHostName = Contest.getLinkToHostName();
+                        HashMap<String, String> linkToHostName = Contest.getLinkToHostName();
 
-                            for(int i=0; i<last; i++)
+                        contestList.put("All", new ArrayList<Contest>());
+                        for(Map.Entry<String, String>entry : linkToHostName.entrySet())
+                        {
+                            contestList.put(entry.getValue(), new ArrayList<Contest>());
+                        }
+
+
+                        for(int i=0; i<last; i++)
                             {
                                temp = (JSONObject) jsonArray.get(i);
 
                                if(linkToHostName.containsKey(temp.getString("host")))
                                {
-                                   contestList.add( new Contest( temp.getString("event"), temp.getString("start"),
+                                   contestList.get(linkToHostName.get(temp.getString("host")))
+                                           .add( new Contest( temp.getString("event"), Utility.formatTimeStamp(temp.getString("start")),
                                                                 temp.getString("host"), temp.getString("href")));
+                                   contestList.get("All")
+                                           .add( new Contest( temp.getString("event"), Utility.formatTimeStamp(temp.getString("start")),
+                                                   temp.getString("host"), temp.getString("href")));
                                }
 
                             }
+
+
 
                             callBack.onContestFetch(contestList);
 
@@ -79,6 +94,8 @@ public class FetchContest {
             e.printStackTrace();
         }
     }
+
+
 
 
 }
