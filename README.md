@@ -1,1 +1,1 @@
-"# contest-tracker-android" 
+# Contest Tracker - Android Application
