@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         items[1] = "All";
 
         for(int i=0; i<temp.length; i++)
-            items[i+1] = temp[i];
+            items[i+2] = temp[i];
 
 
 
