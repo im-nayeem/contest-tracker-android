@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Contest Tracker</string>
+    <string name="developer">Nayeem Hossain\n
+        Undergraduate Student\n
+        Dept. of CSE, Comilla University\n
+        Email: nayeem.cse.cou@gmail.com
+    </string>
 </resources>
