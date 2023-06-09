@@ -1,10 +1,12 @@
 package com.cp.contesttracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // Main Activity class(Controller)
 
@@ -48,13 +51,26 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         this.allContestList = allContestList;
 
+        for(Map.Entry<String,List<Contest>> entry : this.allContestList.entrySet())
+        {
+            Collections.sort(entry.getValue(), new Comparator<Contest>() {
+                @Override
+                public int compare(Contest o1, Contest o2) {
+                    return o1.getTime().compareTo(o2.getTime());
+                }
+            });
+        }
+
         contestAdapter = new ContestAdapter(allContestList.get("All"), getApplication());
         recyclerView.setAdapter(contestAdapter);
+
 
         setSpinner();
 
 
     }
+
+
 
     private void setSpinner(){
 

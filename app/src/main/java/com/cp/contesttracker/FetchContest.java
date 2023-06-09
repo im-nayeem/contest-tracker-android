@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class FetchContest {
         contestList  = new HashMap<>();
 
         try {
-            final String url = "https://clist.by/api/v3/contest/?format=json&upcoming=true&format_time=true&limit=5000&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
+            final String url = "https://clist.by/api/v3/contest/?format=json&upcoming=true&format_time=true&limit=3000&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -58,17 +59,20 @@ public class FetchContest {
                         for(int i=0; i<last; i++)
                             {
                                temp = (JSONObject) jsonArray.get(i);
+//                               Date currentDate = Utility.getCurrentDate();
 
                                if(linkToHostName.containsKey(temp.getString("host")))
                                {
+//                                   if(Utility.ifDateIsOver(currentDate, Utility.parseTimeStamp(temp.getString("start"))))
+//                                        continue;
 
                                    contestList.get(linkToHostName.get(temp.getString("host")))
                                            .add( new Contest( temp.getString("event"),
-                                                   Utility.formatTimeStamp(temp.getString("start")),
+                                                   Utility.parseTimeStamp(temp.getString("start")),
                                                                 temp.getString("host"), temp.getString("href")));
                                    contestList.get("All")
                                            .add( new Contest( temp.getString("event"),
-                                                   Utility.formatTimeStamp(temp.getString("start")),
+                                                   Utility.parseTimeStamp(temp.getString("start")),
                                                                 temp.getString("host"), temp.getString("href")));
                                }
 

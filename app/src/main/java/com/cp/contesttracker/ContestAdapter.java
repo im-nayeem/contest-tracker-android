@@ -38,7 +38,7 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
 
         final int index = viewHolder.getAdapterPosition();
         viewHolder.name.setText(contestList.get(position).getName());
-        viewHolder.time.setText(contestList.get(position).getTime());
+        viewHolder.time.setText(contestList.get(position).getTimeString());
         viewHolder.host.setText(contestList.get(position).getHost());
     }
 
@@ -46,6 +46,8 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     public int getItemCount() {
         return contestList.size();
     }
+
+
 
     public void updateData(List<Contest> lst)
     {

@@ -4,27 +4,28 @@ package com.cp.contesttracker;
 
 import android.util.Log;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Contest {
     private String name = null;
-    private String time = null;
+    private Date timeStamp = null;
     private String host = null;
     private String contestLink = null;
 
     private static String[] hostList = {"CodeForces", "CodeChef", "AtCoder", "TopCoder", "Toph", "LeetCode", "CodeJam", "HackerCup", "KickStart"};
 
-    public Contest(String name, String time, String host, String contestLink) {
+    public Contest(String name, Date timeStamp, String host, String contestLink) {
         this.name = name;
-        this.time = time;
+        this.timeStamp = timeStamp;
         this.host = host;
         this.contestLink = contestLink;
     }
 
-    public Contest(String name, String time, String host) {
+    public Contest(String name, Date timeStamp, String host) {
         this.name = name;
-        this.time = time;
+        this.timeStamp = timeStamp;
         this.host = host;
     }
 
@@ -33,8 +34,11 @@ public class Contest {
         return name;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimeString() {
+        return Utility.formatTimeStamp(timeStamp);
+    }
+    public Date getTime(){
+        return timeStamp;
     }
 
     public String getHost() {
