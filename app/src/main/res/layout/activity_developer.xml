@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="50px"
+        android:textSize="30px"
         android:text="@string/developer" />
 
 
