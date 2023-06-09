@@ -85,6 +85,7 @@ public class FetchContest {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(context,"Couldn't Fetch Data! Check Your Internet Connection.",Toast.LENGTH_LONG).show();
                     error.printStackTrace();
                 }
             });
