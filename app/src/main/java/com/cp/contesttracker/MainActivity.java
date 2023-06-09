@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import java.util.Collections;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     private RecyclerView recyclerView;
     private ContestAdapter contestAdapter;
+    private ProgressBar progressBar;
 
     private HashMap<String, List<Contest>> allContestList = null;
 
@@ -35,8 +38,12 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
 
         FetchContest fetchContest = new FetchContest();
         fetchContest.fetchAPI(this, this);
@@ -66,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
 
         setSpinner();
+
+        progressBar.setVisibility(View.GONE);
 
 
     }

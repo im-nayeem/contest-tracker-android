@@ -2,7 +2,6 @@ package com.cp.contesttracker;
 
 // Data Class(Model) to hold data for a single contest
 
-import android.util.Log;
 
 import java.util.Date;
 import java.util.HashMap;
