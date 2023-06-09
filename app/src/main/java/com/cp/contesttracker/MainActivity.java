@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -61,8 +60,9 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         String temp[] = Contest.getHostList();
 
-        final String[] items = new String[temp.length+1];
+        final String[] items = new String[temp.length+2];
         items[0] = "Filter By Contest Host";
+        items[1] = "All";
 
         for(int i=0; i<temp.length; i++)
             items[i+1] = temp[i];
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
                     contestAdapter.updateData(allContestList.get(selectedItem));
                     contestAdapter.notifyDataSetChanged();
                 }
+
 
             }
 

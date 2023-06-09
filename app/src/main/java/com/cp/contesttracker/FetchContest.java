@@ -32,7 +32,7 @@ public class FetchContest {
         contestList  = new HashMap<>();
 
         try {
-            final String url = "https://clist.by/api/v2/contest/?format=json&format_time=true&upcoming=true&time_zone=asia_dhaka&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
+            final String url = "https://clist.by/api/v3/contest/?format=json&upcoming=true&format_time=true&limit=5000&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -44,7 +44,7 @@ public class FetchContest {
                             JSONArray jsonArray = response.getJSONArray("objects");
                             JSONObject temp = null;
 
-                            int last = Math.min(jsonArray.length(),100);
+                            int last = jsonArray.length();
 
                         HashMap<String, String> linkToHostName = Contest.getLinkToHostName();
 
@@ -61,12 +61,15 @@ public class FetchContest {
 
                                if(linkToHostName.containsKey(temp.getString("host")))
                                {
+
                                    contestList.get(linkToHostName.get(temp.getString("host")))
-                                           .add( new Contest( temp.getString("event"), Utility.formatTimeStamp(temp.getString("start")),
+                                           .add( new Contest( temp.getString("event"),
+                                                   Utility.formatTimeStamp(temp.getString("start")),
                                                                 temp.getString("host"), temp.getString("href")));
                                    contestList.get("All")
-                                           .add( new Contest( temp.getString("event"), Utility.formatTimeStamp(temp.getString("start")),
-                                                   temp.getString("host"), temp.getString("href")));
+                                           .add( new Contest( temp.getString("event"),
+                                                   Utility.formatTimeStamp(temp.getString("start")),
+                                                                temp.getString("host"), temp.getString("href")));
                                }
 
                             }
