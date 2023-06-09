@@ -6,6 +6,7 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -33,16 +34,19 @@ public class Utility {
         return outputFormat.format(timeStamp);
     }
 
-    public static Boolean ifDateIsOver(Date deadline, Date currentDate){
-        if(deadline.compareTo(currentDate) < 1)
+    public static Boolean ifDateIsOver(Date deadline, Date startTime) {
+        if (deadline.compareTo(startTime) > 0) {
             return true;
+        }
         return false;
     }
 
 
     public static Date getCurrentDate(){
         LocalDateTime currentDate = LocalDateTime.now();
-        return parseTimeStamp(currentDate.toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM EEE HH:mm");
+        String formattedDate = currentDate.format(formatter);
+        return parseTimeStamp(formattedDate);
 
     }
 

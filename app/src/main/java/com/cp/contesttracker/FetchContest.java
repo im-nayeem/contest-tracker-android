@@ -59,12 +59,14 @@ public class FetchContest {
                         for(int i=0; i<last; i++)
                             {
                                temp = (JSONObject) jsonArray.get(i);
-//                               Date currentDate = Utility.getCurrentDate();
+
+                               Date currentDate = Utility.getCurrentDate();
+
 
                                if(linkToHostName.containsKey(temp.getString("host")))
                                {
-//                                   if(Utility.ifDateIsOver(currentDate, Utility.parseTimeStamp(temp.getString("start"))))
-//                                        continue;
+                                   if(Utility.ifDateIsOver(currentDate, Utility.parseTimeStamp(temp.getString("start"))))
+                                        continue;
 
                                    contestList.get(linkToHostName.get(temp.getString("host")))
                                            .add( new Contest( temp.getString("event"),
