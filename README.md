@@ -1,4 +1,5 @@
 # Contest Tracker - Android Application
+[![Total Downloads](https://img.shields.io/github/downloads/im-nayeem/contest-tracker-android/total.svg)](https://github.com/im-nayeem/contest-tracker-android/releases)
 
 Contest Tracker is a comprehensive and user-friendly Android Application that allows you to keep track of upcoming competitive programming contests from various online judges. With powerful filtering options, you can easily find contests hosted by your preferred judges. This application is designed for Android devices running version 8.0 (Oreo) and above.
 
