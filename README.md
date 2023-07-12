@@ -23,7 +23,7 @@ In future releases, I plan to integrate the following features to enhance your e
 To install Contest Tracker on your Android device, follow these steps:
 
 1. Ensure your device is running Android 8.0 (Oreo) or a newer version.
-2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.0/contest-tracker.apk).
+2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.0.1/contest-tracker.apk).
 3. Open the APK file on your device and follow the installation prompts.
 4. Once installed, launch the Contest Tracker application and start exploring upcoming contests.
 
