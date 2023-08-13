@@ -31,3 +31,8 @@ To install Contest Tracker on your Android device, follow these steps:
 Thank you for choosing Contest Tracker. I hope it helps you in your competitive programming journey! Happy coding and best of luck in your contests!
 
 Nayeem Hossain
+
+## Screenshots
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/f1d9068a-c8c3-45b1-b2f3-5b965db7356c)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/5f84fed6-07f4-49aa-a0a2-0b8f144935fe)
+
