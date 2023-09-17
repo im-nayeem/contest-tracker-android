@@ -59,6 +59,7 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
                 Intent intent = new Intent(context, ContestDetailsActivity.class);
                 Contest contest = contestList.get(position);
                 intent.putExtra("contest", (Serializable) contest);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
