@@ -46,10 +46,13 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
 
+        // Check for updates
+        UpdateChecker updateChecker = new UpdateChecker(this, this.getString(R.string.update_api_url));
+        updateChecker.checkForUpdate();
+
         // Create intance of FetchContest class that uses Volley to fetch contest info
         FetchContest fetchContest = new FetchContest();
         fetchContest.fetchAPI(this, this);
-
 
 
     }

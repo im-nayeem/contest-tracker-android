@@ -5,4 +5,5 @@
         Dept. of CSE, Comilla University\n
         Email: nayeem.cse.cou@gmail.com
     </string>
+    <string name="update_api_url">https://api.github.com/repos/im-nayeem/contest-tracker-android/releases</string>
 </resources>
