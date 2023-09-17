@@ -11,12 +11,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contest Name"
-        android:textSize="18dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:layout_marginBottom="7dp"
+        />
+
+    <TextView
+        android:id="@+id/Time"
+        android:layout_below="@+id/contest_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Time: "
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+    <TextView
+        android:id="@+id/contest_time"
+        android:layout_below="@+id/contest_name"
+        android:layout_toRightOf="@+id/Time"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contest Time"
+        android:textSize="15dp"
+        android:textColor="#000"
+        />
+
+    <TextView
+        android:id="@+id/Duration"
+        android:layout_below="@+id/contest_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duration: "
+        android:textStyle="bold"
+        android:textSize="15dp"
         android:textColor="#000"
         />
     <TextView
         android:id="@+id/contest_duration"
         android:layout_below="@+id/contest_time"
+        android:layout_toRightOf="@+id/Duration"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contest Duration"
@@ -24,18 +61,23 @@
         android:textColor="#000"
         />
 
+
     <TextView
-        android:id="@+id/contest_time"
-        android:layout_below="@+id/contest_name"
+        android:id="@+id/Host"
+        android:layout_below="@+id/contest_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Contest Time"
+        android:text="Host: "
         android:textSize="15dp"
+        android:textStyle="bold"
         android:textColor="#000"
         />
+
     <TextView
         android:id="@+id/contest_host"
         android:layout_below="@+id/contest_duration"
+        android:layout_toRightOf="@+id/Host"
+        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contest Host"

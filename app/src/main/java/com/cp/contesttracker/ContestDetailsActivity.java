@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,9 +53,9 @@ public class ContestDetailsActivity extends AppCompatActivity {
     private void setData()
     {
         this.contestName.setText(this.contest.getName());
-        this.contestTime.setText("Starting Time: " + this.contest.getTimeString());
-        this.contestDuration.setText("Duration: " + this.contest.getDuration());
-        this.contestHost.setText("Host: " + this.contest.getHost());
+        this.contestTime.setText(this.contest.getTimeString());
+        this.contestDuration.setText(this.contest.getDuration());
+        this.contestHost.setText(this.contest.getHost());
         this.contestLink.setText("Click to see details: \n" + this.contest.getContestLink());
     }
 
