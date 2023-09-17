@@ -32,7 +32,7 @@ public class FetchContest {
         contestList  = new HashMap<>();
 
         try {
-            final String url = "";
+             String url = BuildConfig.API_KEY;
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 

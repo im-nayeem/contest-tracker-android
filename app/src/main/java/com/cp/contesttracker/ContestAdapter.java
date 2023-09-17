@@ -39,22 +39,18 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ContestViewHolder viewHolder, final int position) {
 
-        final int index = viewHolder.getAdapterPosition();
-
-
+//        final int index = viewHolder.getAdapterPosition();
 
         viewHolder.name.setText(contestList.get(position).getName());
         viewHolder.time.setText(contestList.get(position).getTimeString());
         viewHolder.host.setText(contestList.get(position).getHost());
 
-//        Log.e("Date: ", contestList.get(position).getTime().toString());
 
         if(contestList.get(position).isToday()) {
             viewHolder.view.setBackgroundColor(Color.parseColor("#a8dba2"));
         }
         else {
             viewHolder.view.setBackgroundColor(Color.TRANSPARENT);
-
         }
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
