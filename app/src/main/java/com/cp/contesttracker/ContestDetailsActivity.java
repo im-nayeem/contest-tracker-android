@@ -3,10 +3,13 @@ package com.cp.contesttracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ContestDetailsActivity extends AppCompatActivity {
     private TextView contestName;
@@ -21,7 +24,7 @@ public class ContestDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contest_details);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         this.contest = (Contest) intent.getSerializableExtra("contest");
         this.contestName = findViewById(R.id.contest_name);
         this.contestTime = findViewById(R.id.contest_time);
@@ -29,14 +32,32 @@ public class ContestDetailsActivity extends AppCompatActivity {
         this.contestDuration = findViewById(R.id.contest_duration);
         this.contestLink = findViewById(R.id.contest_link);
 
+        this.contestLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contestLink = contest.getContestLink();
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contestLink));
+
+                // Check if there is any web browser installed on phone
+                if(browserIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(browserIntent);
+                } else {
+                    Toast.makeText(ContestDetailsActivity.this,
+                            "There is no browser installed on your phone!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         setData();
 
     }
     private void setData()
     {
         this.contestName.setText(this.contest.getName());
-        this.contestDuration.setText(this.contest.getDuration());
-        this.contestHost.setText(this.contest.getHost());
+        this.contestTime.setText("Starting Time: " + this.contest.getTimeString());
+        this.contestDuration.setText("Duration: " + this.contest.getDuration());
+        this.contestHost.setText("Host: " + this.contest.getHost());
         this.contestLink.setText("Click to see details: \n" + this.contest.getContestLink());
     }
 

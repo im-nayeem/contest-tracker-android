@@ -49,8 +49,7 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
 
 //        Log.e("Date: ", contestList.get(position).getTime().toString());
 
-        if(contestList.get(position).isToday())
-        {
+        if(contestList.get(position).isToday()) {
             viewHolder.view.setBackgroundColor(Color.parseColor("#a8dba2"));
         }
         else {
@@ -63,7 +62,6 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ContestDetailsActivity.class);
                 Contest contest = contestList.get(position);
-//                intent.putExtra("contest", "csjh");
                 intent.putExtra("contest", (Serializable) contest);
                 context.startActivity(intent);
             }
