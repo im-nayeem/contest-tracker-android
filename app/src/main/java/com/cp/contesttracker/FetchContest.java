@@ -70,10 +70,12 @@ public class FetchContest {
                                    contestList.get(linkToHostName.get(temp.getString("host")))
                                            .add( new Contest( temp.getString("event"),
                                                    Utility.parseTimeStamp(temp.getString("start")),
-                                                                temp.getString("host"), temp.getString("href")));
+                                                                Long.parseLong(temp.getString("duration")),
+                                                                    temp.getString("host"), temp.getString("href")));
                                    contestList.get("All")
                                            .add( new Contest( temp.getString("event"),
                                                    Utility.parseTimeStamp(temp.getString("start")),
+                                                            Long.parseLong(temp.getString("duration")),
                                                                 temp.getString("host"), temp.getString("href")));
                                }
 

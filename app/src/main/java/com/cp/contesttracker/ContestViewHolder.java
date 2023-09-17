@@ -14,12 +14,13 @@ public class ContestViewHolder extends RecyclerView.ViewHolder {
     TextView time;
     TextView host;
 
-    public ContestViewHolder(@NonNull View itemView) {
+    public ContestViewHolder(@NonNull final View itemView) {
         super(itemView);
 
         name = itemView.findViewById(R.id.contestName);
         time = itemView.findViewById(R.id.contestTime);
         host = itemView.findViewById(R.id.host);
         view = itemView;
+
     }
 }

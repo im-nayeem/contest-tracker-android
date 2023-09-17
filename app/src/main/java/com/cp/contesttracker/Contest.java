@@ -3,22 +3,25 @@ package com.cp.contesttracker;
 // Data Class(Model) to hold data for a single contest
 
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Contest {
+public class Contest implements Serializable {
     private String name = null;
     private Date timeStamp = null;
     private String host = null;
+    private long duration = 0;
     private String contestLink = null;
     private boolean isToday = false;
 
-    private static String[] hostList = {"CodeForces", "CodeChef", "AtCoder", "TopCoder", "Toph", "LeetCode", "CodeJam", "HackerCup", "KickStart"};
+    private static String[] hostList = {"Codeforces", "Codechef", "Atcoder", "Topcoder", "Toph", "Leetcode", "Codejam", "Hackercup", "Kickstart"};
 
-    public Contest(String name, Date timeStamp, String host, String contestLink) {
+    public Contest(String name, Date timeStamp, long duration, String host, String contestLink) {
         this.name = name;
         this.timeStamp = timeStamp;
+        this.duration = duration;
         this.host = host;
         this.contestLink = contestLink;
         this.isToday = Utility.isToday(timeStamp);
@@ -52,6 +55,26 @@ public class Contest {
 
     public boolean isToday(){ return this.isToday; }
 
+    public String getDuration() {
+        long totalMinutes = this.duration / 60;
+        long days = totalMinutes / (60*24);
+        long hours = (totalMinutes % (60 * 24)) / 60;
+        long minutes = (totalMinutes % (60 * 24)) % 60;
+
+        StringBuilder durationString = new StringBuilder();
+        if(days != 0)
+        {
+            durationString.append(days + " days, ");
+        }
+        if(hours != 0)
+        {
+            durationString.append(hours + " hours, ");
+        }
+        durationString.append(minutes + " minutes");
+
+        return durationString.toString();
+    }
+
 
     public static String[] getHostList(){
         return hostList;
@@ -61,15 +84,15 @@ public class Contest {
 
         HashMap<String, String> hostNameToLink = new HashMap<>();
 
-        hostNameToLink.put("CodeForces","codeforces.com");
-        hostNameToLink.put("CodeChef", "codechef.com");
-        hostNameToLink.put("TopCoder", "topcoder.com");
+        hostNameToLink.put("Codeforces","codeforces.com");
+        hostNameToLink.put("Codechef", "codechef.com");
+        hostNameToLink.put("Topcoder", "topcoder.com");
         hostNameToLink.put("Toph", "toph.co");
-        hostNameToLink.put("LeetCode", "leetcode.com");
-        hostNameToLink.put("CodeJam", "codingcompetitions.withgoogle.com/codejam");
-        hostNameToLink.put("HackerCup", "facebook.com/hackercup");
-        hostNameToLink.put("KickStart", "codingcompetitions.withgoogle.com/kickstart");
-        hostNameToLink.put("AtCoder", "atcoder.jp");
+        hostNameToLink.put("Leetcode", "leetcode.com");
+        hostNameToLink.put("Codejam", "codingcompetitions.withgoogle.com/codejam");
+        hostNameToLink.put("Hackercup", "facebook.com/hackercup");
+        hostNameToLink.put("Kickstart", "codingcompetitions.withgoogle.com/kickstart");
+        hostNameToLink.put("Atcoder", "atcoder.jp");
 
         return hostNameToLink;
     }

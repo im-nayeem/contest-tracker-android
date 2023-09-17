@@ -1,6 +1,7 @@
 package com.cp.contesttracker;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,12 +11,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     List<Contest> contestList = null;
     Context context;
-    View contestView;
 
     public ContestAdapter(List<Contest> contestList, Context context) {
         this.contestList = contestList;
@@ -39,16 +40,35 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     public void onBindViewHolder(@NonNull final ContestViewHolder viewHolder, final int position) {
 
         final int index = viewHolder.getAdapterPosition();
+
+
+
         viewHolder.name.setText(contestList.get(position).getName());
         viewHolder.time.setText(contestList.get(position).getTimeString());
         viewHolder.host.setText(contestList.get(position).getHost());
 
 //        Log.e("Date: ", contestList.get(position).getTime().toString());
+
         if(contestList.get(position).isToday())
         {
-            viewHolder.name.setBackgroundColor(Color.parseColor("#a0c9a7"));
-//            viewHolder.contestView.setBackgroundColor(Color.parseColor("#a0c9a7"));
+            viewHolder.view.setBackgroundColor(Color.parseColor("#a8dba2"));
         }
+        else {
+            viewHolder.view.setBackgroundColor(Color.TRANSPARENT);
+
+        }
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ContestDetailsActivity.class);
+                Contest contest = contestList.get(position);
+//                intent.putExtra("contest", "csjh");
+                intent.putExtra("contest", (Serializable) contest);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

@@ -57,7 +57,7 @@ public class Utility {
         String dateStr = dateFormat.format(date);
         String currentStr = dateFormat.format(currentDate);
 
-        return dateStr.equals("2023-09-17");
+        return dateStr.equals(currentStr);
     }
 
 }

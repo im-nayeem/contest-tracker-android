@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    tools:context=".ContestDetailsActivity">
+
+    <TextView
+        android:id="@+id/contest_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contest Name"
+        android:textSize="18dp"
+        android:textColor="#000"
+        />
+    <TextView
+        android:id="@+id/contest_duration"
+        android:layout_below="@+id/contest_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contest Duration"
+        android:textSize="15dp"
+        android:textColor="#000"
+        />
+
+    <TextView
+        android:id="@+id/contest_time"
+        android:layout_below="@+id/contest_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contest Time"
+        android:textSize="15dp"
+        android:textColor="#000"
+        />
+    <TextView
+        android:id="@+id/contest_host"
+        android:layout_below="@+id/contest_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contest Host"
+        android:textSize="15dp"
+        android:textColor="#000"
+        />
+
+    <TextView
+        android:id="@+id/contest_link"
+        android:layout_below="@+id/contest_host"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click For More Details"
+        android:textSize="15dp"
+        android:textColor="#2E65A6"
+
+        />
+</RelativeLayout>
