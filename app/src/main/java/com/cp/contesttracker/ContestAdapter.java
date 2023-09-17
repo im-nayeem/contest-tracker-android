@@ -1,6 +1,8 @@
 package com.cp.contesttracker;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,7 @@ import java.util.List;
 public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     List<Contest> contestList = null;
     Context context;
-
+    View contestView;
 
     public ContestAdapter(List<Contest> contestList, Context context) {
         this.contestList = contestList;
@@ -40,6 +42,13 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         viewHolder.name.setText(contestList.get(position).getName());
         viewHolder.time.setText(contestList.get(position).getTimeString());
         viewHolder.host.setText(contestList.get(position).getHost());
+
+//        Log.e("Date: ", contestList.get(position).getTime().toString());
+        if(contestList.get(position).isToday())
+        {
+            viewHolder.name.setBackgroundColor(Color.parseColor("#a0c9a7"));
+//            viewHolder.contestView.setBackgroundColor(Color.parseColor("#a0c9a7"));
+        }
     }
 
     @Override

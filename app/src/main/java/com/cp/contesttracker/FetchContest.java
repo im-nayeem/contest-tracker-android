@@ -32,7 +32,7 @@ public class FetchContest {
         contestList  = new HashMap<>();
 
         try {
-            final String url = "https://clist.by/api/v3/contest/?format=json&upcoming=true&limit=3000&username=html_programmer&api_key=0df77c63b2ca703a58c65409734f69654e38fddf";
+            final String url = "";
 
             RequestQueue requestQueue = Volley.newRequestQueue(context);
 

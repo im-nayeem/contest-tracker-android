@@ -12,6 +12,7 @@ public class Contest {
     private Date timeStamp = null;
     private String host = null;
     private String contestLink = null;
+    private boolean isToday = false;
 
     private static String[] hostList = {"CodeForces", "CodeChef", "AtCoder", "TopCoder", "Toph", "LeetCode", "CodeJam", "HackerCup", "KickStart"};
 
@@ -20,6 +21,7 @@ public class Contest {
         this.timeStamp = timeStamp;
         this.host = host;
         this.contestLink = contestLink;
+        this.isToday = Utility.isToday(timeStamp);
     }
 
     public Contest(String name, Date timeStamp, String host) {
@@ -47,6 +49,8 @@ public class Contest {
     public String getContestLink() {
         return contestLink;
     }
+
+    public boolean isToday(){ return this.isToday; }
 
 
     public static String[] getHostList(){

@@ -34,6 +34,7 @@ public class Utility {
     }
 
     public static Boolean ifDateIsOver(Date deadline, Date startTime) {
+
         if (deadline.compareTo(startTime) > 0) {
             return true;
         }
@@ -47,6 +48,16 @@ public class Utility {
         String formattedDate = currentDate.format(formatter);
         return parseTimeStamp(formattedDate);
 
+    }
+
+    public static boolean isToday(Date date) {
+        Date currentDate = new Date();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = dateFormat.format(date);
+        String currentStr = dateFormat.format(currentDate);
+
+        return dateStr.equals("2023-09-17");
     }
 
 }
