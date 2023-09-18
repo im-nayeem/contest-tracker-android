@@ -7,11 +7,15 @@
         app:showAsAction="never"
         />
     <item
+        android:id="@+id/stat"
+        android:title="Submission Statistics"
+        app:showAsAction="never"
+        />
+    <item
         android:id="@+id/preferences"
         android:title="Settings and Preferences"
         app:showAsAction="never"
         />
-
     <item
         android:id="@+id/developer"
         android:title="About Developer"

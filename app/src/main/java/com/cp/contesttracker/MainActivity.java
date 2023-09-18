@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
             Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
             startActivity(intent);
             return true;
-        } else if (id == R.id.recommender) {
+        } else if (id == R.id.recommender || id == R.id.stat) {
             AppPreferences preferences = new AppPreferences(MainActivity.this);
             if(preferences.getRecommenderUrl().equals(""))
             {
@@ -97,11 +97,15 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 //                Log.e("URL----------", preferences.getRecommenderUrl());
                 Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
                 intent.putExtra("url", preferences.getRecommenderUrl());
-                intent.putExtra("type", "recommendation");
+                if (id == R.id.stat)
+                    intent.putExtra("type", "stat");
+                else
+                    intent.putExtra("type", "recommendation");
                 startActivity(intent);
                 return true;
             }
         }
+
         return super.onOptionsItemSelected(item);
     }
 

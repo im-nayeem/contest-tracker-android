@@ -26,7 +26,13 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Practice Recommendation");
+
+
+        Intent intent = getIntent();
+        if(intent.getStringExtra("type").equals("stat"))
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Ranking & Statistics");
+        else
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Practice Recommendation");
 
 
         myWebView = (WebView) findViewById(R.id.webview);
@@ -42,7 +48,7 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
-                if (url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
+                if (!url.equals("") && (url.startsWith("http://") || url.startsWith("https://"))) {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     view.getContext().startActivity(intent);
                     return true;
@@ -52,17 +58,37 @@ public class WebViewActivity extends AppCompatActivity {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                view.loadUrl("javascript:(function() { " +
-                        "var container = document.getElementsByClassName('container')[0];" +
-                        "var practiceTab = document.getElementById('practice_tab');" +
-                        "container.innerHTML = practiceTab.innerHTML;" +
-                        "document.getElementsByClassName('navbar')[0].innerHTML = '<h4>Practice Recommendation:(Scroll Down)</h4>'"+
-                        "})()");
+                Intent intent1 = getIntent();
+                if(intent1.getStringExtra("type").equals("recommendation"))
+                {
+                    view.loadUrl("javascript:(function() { " +
+                            "var container = document.getElementsByClassName('container')[0];" +
+                            "var practiceTab = document.getElementById('practice_tab');" +
+                            "container.innerHTML = practiceTab.innerHTML;" +
+                            "document.getElementsByClassName('navbar')[0].innerHTML = '<h4>Practice Recommendation:(Scroll Down)</h4>'"+
+                            "})()");
+                }
+                else
+                {
+                    view.loadUrl("javascript:(function() { " +
+                            "var container = document.querySelector('.container');" +
+                            "if (container) {" +
+                            "   var rows = container.querySelectorAll('.row');" +
+                            "   for (var i = 0; i < rows.length; i++) {" +
+                            "       if (i>1 && i <= 5) {" +
+                            "           rows[i].style.display = 'block';" +
+                            "       } else {" +
+                            "           rows[i].style.display = 'none';" +
+                            "       }" +
+                            "   }" +
+                            "}" +
+                            "document.getElementsByClassName('navbar')[0].innerHTML = ''"+
+                            "})()");
+                }
                 progressBar.setVisibility(View.GONE);
             }
 
         });
-        Intent intent = getIntent();
         String url = intent.getStringExtra("url");
         String type = intent.getStringExtra("type");
         myWebView.loadUrl(url);
@@ -71,13 +97,10 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        // Check if the key event was the Back button and if there's history
         if ((keyCode == KeyEvent.KEYCODE_BACK) && myWebView.canGoBack()) {
             myWebView.goBack();
             return true;
         }
-        // If it wasn't the Back key or there's no web page history, bubble up to the default
-        // system behavior (probably exit the activity)
         return super.onKeyDown(keyCode, event);
     }
 }
