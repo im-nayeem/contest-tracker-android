@@ -5,6 +5,8 @@ import android.util.Log;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
@@ -42,13 +44,19 @@ public class Utility {
     }
 
 
-    public static Date getCurrentDate(){
-        LocalDateTime currentDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-        String formattedDate = currentDate.format(formatter);
-        return parseTimeStamp(formattedDate);
+//    public static Date getCurrentDate(){
+//        LocalDateTime currentDate = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+//        String formattedDate = currentDate.format(formatter);
+//        return parseTimeStamp(formattedDate);
+//
+//    }
 
+    public static Date getCurrentDateInGMT() {
+        ZonedDateTime currentDateTime = ZonedDateTime.now(ZoneOffset.UTC);
+        return Date.from(currentDateTime.toInstant());
     }
+
 
     public static boolean isToday(Date date) {
         Date currentDate = new Date();
