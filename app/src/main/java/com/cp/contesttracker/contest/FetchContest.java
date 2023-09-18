@@ -63,7 +63,7 @@ public class FetchContest {
                             {
                                temp = (JSONObject) jsonArray.get(i);
 
-                               Date currentDate = Utility.getCurrentDate();
+                               Date currentDate = Utility.getCurrentDateInGMT();
 
 
                                if(linkToHostName.containsKey(temp.getString("host")))

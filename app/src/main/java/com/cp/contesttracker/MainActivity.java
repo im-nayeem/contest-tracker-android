@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.cp.contesttracker.contest.Contest;
 import com.cp.contesttracker.contest.ContestAdapter;
 import com.cp.contesttracker.contest.FetchCallBack;
 import com.cp.contesttracker.contest.FetchContest;
+import com.cp.contesttracker.problemsuggestion.AppPreferences;
 import com.cp.contesttracker.problemsuggestion.PreferencesActivity;
+import com.cp.contesttracker.problemsuggestion.WebViewActivity;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -83,6 +86,21 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
             Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
             startActivity(intent);
             return true;
+        } else if (id == R.id.recommender) {
+            AppPreferences preferences = new AppPreferences(MainActivity.this);
+            if(preferences.getRecommenderUrl().equals(""))
+            {
+                Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
+                startActivity(intent);
+                return true;
+            } else {
+//                Log.e("URL----------", preferences.getRecommenderUrl());
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                intent.putExtra("url", preferences.getRecommenderUrl());
+                intent.putExtra("type", "recommendation");
+                startActivity(intent);
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
