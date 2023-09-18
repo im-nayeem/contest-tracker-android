@@ -15,8 +15,10 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.cp.contesttracker.contest.Contest;
+import com.cp.contesttracker.contest.ContestAdapter;
 import com.cp.contesttracker.contest.FetchCallBack;
 import com.cp.contesttracker.contest.FetchContest;
+import com.cp.contesttracker.problemsuggestion.PreferencesActivity;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -74,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         if (id == R.id.developer) {
             Intent intent = new Intent(MainActivity.this, DeveloperActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        else if (id == R.id.preferences) {
+            Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
             startActivity(intent);
             return true;
         }

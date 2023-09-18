@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".ContestDetailsActivity">
+    tools:context=".contest.ContestDetailsActivity">
 
     <TextView
         android:id="@+id/contest_name"

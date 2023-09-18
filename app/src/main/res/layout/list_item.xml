@@ -15,7 +15,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:text="Codeforces Round #566"
-        android:textColor="#0E242B"
+        android:textColor="#000"
+        android:textStyle="bold"
         android:textSize="16sp" />
 
     <TextView
@@ -28,7 +29,7 @@
         android:layout_marginEnd="20dp"
         android:gravity="center"
         android:text="May 23, 2015 | 8:30 P.M"
-        android:textColor="#575757"
+        android:textColor="#323232"
         android:textSize="16sp" />
 
 
@@ -42,7 +43,7 @@
         android:layout_marginStart="10dp"
         android:gravity="center"
         android:text="Codeforces"
-        android:textColor="#575757"
+        android:textColor="#1E1E1E"
         android:layout_marginBottom="5dp"
         android:textSize="16sp"/>
 

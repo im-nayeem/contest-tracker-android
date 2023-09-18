@@ -1,10 +1,12 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.cp.contesttracker.R;
 
 // ViewHolder class for recycler view
 

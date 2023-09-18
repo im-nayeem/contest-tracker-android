@@ -1,4 +1,4 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cp.contesttracker.contest.Contest;
+import com.cp.contesttracker.R;
 
 import java.io.Serializable;
 import java.util.List;

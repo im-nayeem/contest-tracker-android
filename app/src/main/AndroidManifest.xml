@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WebViewActivity"></activity>
-        <activity android:name=".ContestDetailsActivity" />
+        <activity android:name=".problemsuggestion.PreferencesActivity"></activity>
+        <activity android:name=".problemsuggestion.WebViewActivity" />
+        <activity android:name=".contest.ContestDetailsActivity" />
         <activity android:name=".DeveloperActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

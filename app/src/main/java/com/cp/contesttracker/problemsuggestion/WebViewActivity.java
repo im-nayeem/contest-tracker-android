@@ -1,4 +1,4 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.problemsuggestion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.cp.contesttracker.R;
 
 public class WebViewActivity extends AppCompatActivity {
 

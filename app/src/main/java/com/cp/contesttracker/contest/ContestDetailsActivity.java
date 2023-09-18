@@ -1,4 +1,4 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cp.contesttracker.contest.Contest;
+import com.cp.contesttracker.R;
 
 public class ContestDetailsActivity extends AppCompatActivity {
     private TextView contestName;
@@ -49,8 +49,9 @@ public class ContestDetailsActivity extends AppCompatActivity {
             }
         });
 
-        setData();
+        getSupportActionBar().setTitle("Contest Details");
 
+        setData();
     }
     private void setData()
     {
