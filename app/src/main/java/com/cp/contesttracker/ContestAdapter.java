@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cp.contesttracker.contest.Contest;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -69,7 +71,6 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     public int getItemCount() {
         return contestList.size();
     }
-
 
 
     public void updateData(List<Contest> lst)

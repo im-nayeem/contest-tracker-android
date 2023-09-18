@@ -22,7 +22,7 @@
         android:layout_below="@+id/contest_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Time: "
+        android:text="Start: "
         android:textSize="15dp"
         android:textStyle="bold"
         android:textColor="#000"

@@ -1,7 +1,9 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
 
 // Data Class(Model) to hold data for a single contest
 
+
+import com.cp.contesttracker.Utility;
 
 import java.io.Serializable;
 import java.util.Date;

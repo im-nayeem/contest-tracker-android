@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cp.contesttracker.contest.Contest;
+
 public class ContestDetailsActivity extends AppCompatActivity {
     private TextView contestName;
     private TextView contestTime;

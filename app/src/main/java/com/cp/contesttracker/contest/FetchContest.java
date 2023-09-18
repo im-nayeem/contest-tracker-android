@@ -1,4 +1,4 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
 
 
 import android.content.Context;
@@ -11,6 +11,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cp.contesttracker.BuildConfig;
+import com.cp.contesttracker.Utility;
+import com.cp.contesttracker.contest.Contest;
+import com.cp.contesttracker.contest.FetchCallBack;
 
 import org.json.JSONArray;
 import org.json.JSONException;

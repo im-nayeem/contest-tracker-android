@@ -1,4 +1,6 @@
-package com.cp.contesttracker;
+package com.cp.contesttracker.contest;
+
+import com.cp.contesttracker.contest.Contest;
 
 import java.util.HashMap;
 import java.util.List;

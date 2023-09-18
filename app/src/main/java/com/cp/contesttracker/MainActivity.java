@@ -13,7 +13,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.Toast;
+
+import com.cp.contesttracker.contest.Contest;
+import com.cp.contesttracker.contest.FetchCallBack;
+import com.cp.contesttracker.contest.FetchContest;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -37,9 +40,10 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // find and set the recyclerview
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-
+        // set layout
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -63,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         return true;
     }
 
+    // handle developer option in option menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -72,16 +77,16 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
 
+    // callback method called after fetched contests
     @Override
     public void onContestFetch(HashMap<String, List<Contest>> allContestList) {
 
         this.allContestList = allContestList;
-
+        // sort contests in ascending order according to time
         for(Map.Entry<String,List<Contest>> entry : this.allContestList.entrySet())
         {
             Collections.sort(entry.getValue(), new Comparator<Contest>() {
@@ -91,11 +96,11 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
                 }
             });
         }
-
+        // show all contests
         contestAdapter = new ContestAdapter(allContestList.get("All"), getApplication());
         recyclerView.setAdapter(contestAdapter);
 
-
+        // set spinner for filtering contest by host
         setSpinner();
 
         progressBar.setVisibility(View.GONE);
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
     }
 
 
-
+    // spinner for filtering contest
     private void setSpinner(){
 
         String temp[] = Contest.getHostList();
@@ -116,9 +121,8 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         for(int i=0; i<temp.length; i++)
             items[i+2] = temp[i];
 
-
-
         final Spinner spinner = findViewById(R.id.filter_spinner);
+
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -132,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
                     contestAdapter.updateData(allContestList.get(selectedItem));
                     contestAdapter.notifyDataSetChanged();
                 }
-
 
             }
 
