@@ -6,16 +6,18 @@ Contest Tracker is a comprehensive and user-friendly Android Application that al
 ## Features
 
 - **Contest Schedule**: Stay updated with the latest competitive programming contests from popular online judges.
-- **Judge Filters**: Filter contests based on your preferred online judges to see only the ones that interest you.
+- **Filtering By OJ**: Filter contests based on your preferred online judges to see only the ones that interest you.
 - **Contest Details**: Get detailed information about each contest, including start time, host, and contest link.
+- **Practice Problem Recommendations**: Receive topic-based practice problem recommendations from your selected online judges to enhance your coding skills.
+- **Ranking and Solved Statistics**: Keep track of your contest rankings and solved problem statistics to monitor your progress.
 - **User-Friendly Interface**: The app provides an intuitive and visually appealing user interface for easy navigation and interaction.
 
 ## Planned Features
 
 In future releases, I plan to integrate the following features to enhance your experiences with Contest Tracker:
 
-- **Notification Alerts**: Receive notifications 20 or 30 minutes before the contest starts(preferred by user) to ensure you never miss an important event.
-- **Problem Suggestions**: Get topic-based problem suggestions from selected online judges, according to your preferences.
+- **Notification Alerts**: Receive notifications 20 or 30 minutes before the contest starts (preferred by the user) to ensure you never miss an important event.
+
 
 
 ## Installation
@@ -23,7 +25,7 @@ In future releases, I plan to integrate the following features to enhance your e
 To install Contest Tracker on your Android device, follow these steps:
 
 1. Ensure your device is running Android 8.0 (Oreo) or a newer version.
-2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.0.1/contest-tracker.apk).
+2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.0.3/contest-tracker.apk).
 3. Open the APK file on your device and follow the installation prompts.
 4. Once installed, launch the Contest Tracker application and start exploring upcoming contests.
 
@@ -33,6 +35,12 @@ Thank you for choosing Contest Tracker. I hope it helps you in your competitive 
 Nayeem Hossain
 
 ## Screenshots
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/f1d9068a-c8c3-45b1-b2f3-5b965db7356c)
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/5f84fed6-07f4-49aa-a0a2-0b8f144935fe)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/e52680e1-004e-4610-ac1d-65c3c7a4a921)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/14ae1137-1a41-4838-8707-8cd777e1109a)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/7e4d6a95-bacf-45db-a64b-857b8faf1eab)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/2d195b5d-0102-494a-b9d0-155ea88cf731)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/305358b7-0ad3-4713-a067-3742d21e922a)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/fb64e11c-fabc-4d96-80ab-9b07e624e6fa)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/9c0e7ce2-f461-43a3-848c-feacbd0625c4)
+
 
