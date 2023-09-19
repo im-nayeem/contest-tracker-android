@@ -2,19 +2,14 @@ package com.cp.contesttracker.problemsuggestion;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
-import com.cp.contesttracker.MainActivity;
 import com.cp.contesttracker.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Objects;
 
 public class PreferencesActivity extends AppCompatActivity {
@@ -43,6 +38,7 @@ public class PreferencesActivity extends AppCompatActivity {
         this.addEventListener();
     }
 
+    // add event listener on save button, save to shared preferences
     private void addEventListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +68,7 @@ public class PreferencesActivity extends AppCompatActivity {
         });
     }
 
+    // load saved preferences in view
     private void loadSavedPreference() {
         AppPreferences preferences = new AppPreferences(PreferencesActivity.this);
         JSONObject ojHandles = preferences.getOjHandles();

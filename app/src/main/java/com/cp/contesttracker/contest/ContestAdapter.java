@@ -3,11 +3,13 @@ package com.cp.contesttracker.contest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cp.contesttracker.R;
@@ -48,10 +50,13 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
 
 
         if(contestList.get(position).isToday()) {
-            viewHolder.view.setBackgroundColor(Color.parseColor("#a8dba2"));
+            Drawable backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.active_layout_border);
+            viewHolder.view.setBackground(backgroundDrawable);
         }
         else {
-            viewHolder.view.setBackgroundColor(Color.TRANSPARENT);
+//            viewHolder.view.setBackgroundColor(Color.parseColor("#E9F9FAFF"));
+            Drawable backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.layout_border);
+            viewHolder.view.setBackground(backgroundDrawable);
         }
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {

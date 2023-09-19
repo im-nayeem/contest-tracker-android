@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -60,6 +61,15 @@ public class Utility {
 
     public static boolean isToday(Date date) {
         Date currentDate = new Date();
+        // Create a Calendar instance and set it to the current date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+
+        // Add one day to the current date to get tomorrow's date
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
+        // Get the Date object for tomorrow
+        currentDate = calendar.getTime();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateStr = dateFormat.format(date);

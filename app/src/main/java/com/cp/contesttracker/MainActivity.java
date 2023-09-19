@@ -143,12 +143,11 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         String temp[] = Contest.getHostList();
 
-        final String[] items = new String[temp.length+2];
-        items[0] = "Filter By Contest Host";
-        items[1] = "All";
+        final String[] items = new String[temp.length+1];
+        items[0] = "All";
 
         for(int i=0; i<temp.length; i++)
-            items[i+2] = temp[i];
+            items[i+1] = temp[i];
 
         final Spinner spinner = findViewById(R.id.filter_spinner);
 
@@ -167,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
                 }
 
             }
-
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
