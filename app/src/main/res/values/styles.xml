@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#555555</item>
         <item name="colorPrimaryDark">#8A8A8A</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="actionBarSize">36dip</item>
+        <item name="colorAccent">#36E398</item>
+        <item name="actionBarSize">40dip</item>
 
     </style>
 
