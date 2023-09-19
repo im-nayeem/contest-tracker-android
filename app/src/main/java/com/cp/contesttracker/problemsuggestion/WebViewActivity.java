@@ -30,7 +30,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.getStringExtra("type").equals("stat"))
-            Objects.requireNonNull(getSupportActionBar()).setTitle("Ranking & Statistics");
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Ratings & Statistics");
         else
             Objects.requireNonNull(getSupportActionBar()).setTitle("Practice Recommendation");
 

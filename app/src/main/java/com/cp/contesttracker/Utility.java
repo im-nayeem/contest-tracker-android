@@ -61,21 +61,18 @@ public class Utility {
 
     public static boolean isToday(Date date) {
         Date currentDate = new Date();
-        // Create a Calendar instance and set it to the current date
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(currentDate);
-
-        // Add one day to the current date to get tomorrow's date
-        calendar.add(Calendar.DAY_OF_MONTH, 1);
-
-        // Get the Date object for tomorrow
-        currentDate = calendar.getTime();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateStr = dateFormat.format(date);
         String currentStr = dateFormat.format(currentDate);
 
         return dateStr.equals(currentStr);
+    }
+
+    public static boolean isDateMatched(String date1, Date date2) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String d2 = dateFormat.format(date2);
+        return date1.equals(d2);
     }
 
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
@@ -23,21 +26,27 @@ import com.cp.contesttracker.problemsuggestion.AppPreferences;
 import com.cp.contesttracker.problemsuggestion.PreferencesActivity;
 import com.cp.contesttracker.problemsuggestion.WebViewActivity;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 // Main Activity class(Controller)
-
 public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     private RecyclerView recyclerView;
     private ContestAdapter contestAdapter;
     private ProgressBar progressBar;
+    private Button datePicker;
 
     private HashMap<String, List<Contest>> allContestList = null;
+    private List<Contest> currentContestList = null;
+
 
 
     @Override
@@ -54,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
+
+        datePicker = findViewById(R.id.date_picker);
 
         // Check for updates
         UpdateChecker updateChecker = new UpdateChecker(this, this.getString(R.string.update_api_url));
@@ -72,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         return true;
     }
 
-    // handle developer option in option menu
+    // handle options in action bar option menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -128,9 +139,13 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         // show all contests
         contestAdapter = new ContestAdapter(allContestList.get("All"), getApplication());
         recyclerView.setAdapter(contestAdapter);
+        this.currentContestList = allContestList.get("All");
 
         // set spinner for filtering contest by host
         setSpinner();
+
+        // set date picker listener
+        setDatePickerListener();
 
         progressBar.setVisibility(View.GONE);
 
@@ -139,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
 
     // spinner for filtering contest
-    private void setSpinner(){
+    private void setSpinner() {
 
         String temp[] = Contest.getHostList();
 
@@ -155,12 +170,15 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                datePicker.setText(R.string.date_picker);
                 String selectedItem = (String) parent.getItemAtPosition(position);
 
                 if (allContestList.containsKey(selectedItem)) {
+                    currentContestList = allContestList.get(selectedItem);
                     contestAdapter.updateData(allContestList.get(selectedItem));
                     contestAdapter.notifyDataSetChanged();
                 }
@@ -171,8 +189,51 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
             public void onNothingSelected(AdapterView<?> parent) {
                 // Handle the case where no item is selected
             }
+
         });
+
 
     }
 
+    // set event listener for datePicker button
+    private void setDatePickerListener() {
+        datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // get instance of calendar.
+                final Calendar c = Calendar.getInstance();
+
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                final int day = c.get(Calendar.DAY_OF_MONTH);
+
+                // variable for date picker dialog.
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                LocalDate date = LocalDate.of(year, monthOfYear + 1, dayOfMonth);
+                                datePicker.setText(date.toString());
+                                filterContestByDate(date.toString());
+                            }
+
+                        }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+    }
+
+    // filter contest according to date and update recyclerview
+    private void filterContestByDate(String date) {
+        List<Contest>filteredContest = new ArrayList<>();
+        for (Contest contest: this.currentContestList) {
+            if(Utility.isDateMatched(date, contest.getTime()))
+            {
+                filteredContest.add(contest);
+            }
+        }
+        contestAdapter.updateData(filteredContest);
+        contestAdapter.notifyDataSetChanged();
+    }
 }

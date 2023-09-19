@@ -16,6 +16,7 @@ import com.cp.contesttracker.R;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     List<Contest> contestList = null;
@@ -34,16 +35,13 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.list_item, parent, false);
 
-        ContestViewHolder contestViewHolder = new ContestViewHolder(view);
-
-        return contestViewHolder;
+        return new ContestViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ContestViewHolder viewHolder, final int position) {
 
 //        final int index = viewHolder.getAdapterPosition();
-
         viewHolder.name.setText(contestList.get(position).getName());
         viewHolder.time.setText(contestList.get(position).getTimeString());
         viewHolder.host.setText(contestList.get(position).getHost());
@@ -77,9 +75,9 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         return contestList.size();
     }
 
-
     public void updateData(List<Contest> lst)
     {
         this.contestList = lst;
     }
+
 }
