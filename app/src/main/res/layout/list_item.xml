@@ -4,9 +4,13 @@
     android:id="@+id/contestView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginLeft="3dp"
-    android:layout_marginRight="3dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingEnd="5dp"
+    android:paddingStart="10dp"
     android:background="@drawable/layout_border"
     >
 
@@ -15,40 +19,59 @@
         android:id="@+id/contestName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
         android:text="Codeforces Round #566"
-        android:textColor="#000"
+        android:textColor="#131313"
         android:textStyle="bold"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/contestTime"
+        android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/contestName"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="20dp"
         android:gravity="center"
-        android:text="May 23, 2015 | 8:30 P.M"
-        android:textColor="#424242"
+        android:layout_marginTop="3dp"
+        android:text="Start: "
+        android:textColor="#000000"
         android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/contestTime"
+        android:layout_toRightOf="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contestName"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="2dp"
+        android:text="May 23, 2015 | 8:30 P.M"
+        android:textStyle="bold"
+        android:textColor="#9C7233"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/host_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/contestTime"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:text="Host: "
+        android:textColor="#000000"
+        android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/host"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/contestTime"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@+id/host_"
         android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="2dp"
         android:text="Codeforces"
-        android:textColor="#404040"
-        android:layout_marginBottom="5dp"
+        android:textColor="#457FB8"
         android:textSize="16sp"/>
 
 </RelativeLayout>
