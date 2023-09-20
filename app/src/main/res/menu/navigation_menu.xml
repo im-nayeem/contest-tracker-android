@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+<!--    <group />-->
+    <item android:title="Tracking Tools and Recommendation">
+        <menu>
+            <item
+                android:id="@+id/recommender"
+                android:title="Practice Recommendation"
+                android:icon="@drawable/recommendation"
+                />
+            <item
+                android:id="@+id/stat"
+                android:title="Ratings and Statistics"
+                android:icon="@drawable/statistics"
+                />
+        </menu>
+    </item>
+
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/preferences"
+                android:title="Preferences"
+                android:icon="@drawable/preferences"
+                />
+        </menu>
+    </item>
+    <item android:title="Developer">
+        <menu>
+            <item
+                android:id="@+id/developer"
+                android:title="About Developer"
+                android:icon="@drawable/developer"
+                />
+        </menu>
+    </item>
+
+</menu>

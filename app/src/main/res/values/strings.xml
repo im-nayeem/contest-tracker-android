@@ -6,6 +6,7 @@
         Email: nayeem.cse.cou@gmail.com
     </string>
     <string name="update_api_url">https://api.github.com/repos/im-nayeem/contest-tracker-android/releases</string>
-
     <string name="date_picker">YYYY-MM-DD</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>

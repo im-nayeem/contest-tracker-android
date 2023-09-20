@@ -75,7 +75,7 @@ public class WebViewActivity extends AppCompatActivity {
                             "if (container) {" +
                             "   var rows = container.querySelectorAll('.row');" +
                             "   for (var i = 0; i < rows.length; i++) {" +
-                            "       if (i>1 && i <= 5) {" +
+                            "       if (i>1 && i <= 9) {" +
                             "           rows[i].style.display = 'block';" +
                             "       } else {" +
                             "           rows[i].style.display = 'none';" +

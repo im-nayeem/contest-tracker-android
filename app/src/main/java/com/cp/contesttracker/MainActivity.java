@@ -1,6 +1,10 @@
 package com.cp.contesttracker;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +28,7 @@ import com.cp.contesttracker.contest.FetchContest;
 import com.cp.contesttracker.problemsuggestion.AppPreferences;
 import com.cp.contesttracker.problemsuggestion.PreferencesActivity;
 import com.cp.contesttracker.problemsuggestion.WebViewActivity;
+import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,6 +39,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 // Main Activity class(Controller)
 public class MainActivity extends AppCompatActivity implements FetchCallBack {
@@ -46,12 +52,28 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
     private HashMap<String, List<Contest>> allContestList = null;
     private List<Contest> currentContestList = null;
 
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // navigation drawer
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // make the Navigation drawer icon always appear on the action bar
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+        setNavItemClickListener();
 
         // find and set the recyclerview
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -76,49 +98,65 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
 
-    // handle options in action bar option menu
+    // toggle navigation drawer
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.developer) {
-            Intent intent = new Intent(MainActivity.this, DeveloperActivity.class);
-            startActivity(intent);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        else if (id == R.id.preferences) {
-            Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (id == R.id.recommender || id == R.id.stat) {
-            AppPreferences preferences = new AppPreferences(MainActivity.this);
-            if(preferences.getRecommenderUrl().equals(""))
-            {
-                Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
-                startActivity(intent);
-                return true;
-            } else {
-//                Log.e("URL----------", preferences.getRecommenderUrl());
-                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
-                intent.putExtra("url", preferences.getRecommenderUrl());
-                if (id == R.id.stat)
-                    intent.putExtra("type", "stat");
-                else
-                    intent.putExtra("type", "recommendation");
-                startActivity(intent);
-                return true;
-            }
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
+    // set what happens after clicking on items on navigation drawer
+    private void setNavItemClickListener() {
+        NavigationView navigationView = findViewById(R.id.nav_drawer);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // Handle navigation item clicks here
+                int id = item.getItemId();
+                if (id == R.id.developer) {
+                    Intent intent = new Intent(MainActivity.this, DeveloperActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                else if (id == R.id.preferences) {
+                    Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
+                    startActivity(intent);
+                    return true;
+                } else if (id == R.id.recommender || id == R.id.stat) {
+                    AppPreferences preferences = new AppPreferences(MainActivity.this);
+                    if(preferences.getRecommenderUrl().equals(""))
+                    {
+                        Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
+                        startActivity(intent);
+                        return true;
+                    } else {
+//                Log.e("URL----------", preferences.getRecommenderUrl());
+                        Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                        intent.putExtra("url", preferences.getRecommenderUrl());
+                        if (id == R.id.stat)
+                            intent.putExtra("type", "stat");
+                        else
+                            intent.putExtra("type", "recommendation");
+                        startActivity(intent);
+                        return true;
+                    }
+                }
+
+                // Close the drawer
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+
+    }
 
     // callback method called after fetched contests
     @Override
@@ -235,4 +273,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         contestAdapter.updateData(filteredContest);
         contestAdapter.notifyDataSetChanged();
     }
+
+
+
 }
