@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SET_ALARM"/>
+<!--    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>-->
+
 
     <application
         android:allowBackup="true"
@@ -13,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".problemsuggestion.PreferencesActivity"></activity>
+        <activity android:name=".problemsuggestion.PreferencesActivity" />
         <activity android:name=".problemsuggestion.WebViewActivity" />
         <activity android:name=".contest.ContestDetailsActivity" />
         <activity android:name=".DeveloperActivity" />
@@ -24,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".notification.NotificationReceiver"/>
     </application>
 
 </manifest>

@@ -1,10 +1,7 @@
 package com.cp.contesttracker.contest;
 
-
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,9 +10,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cp.contesttracker.BuildConfig;
 import com.cp.contesttracker.Utility;
-import com.cp.contesttracker.contest.Contest;
-import com.cp.contesttracker.contest.FetchCallBack;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -96,7 +90,7 @@ public class FetchContest {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(context,"Couldn't Fetch Data! Check Your Internet Connection.",Toast.LENGTH_LONG).show();
+                    Utility.showDialogueMessage(context, "Error Occurred!" , "Couldn't fetch contest information. Check your Internet connection and try again!");
                     error.printStackTrace();
                 }
             });

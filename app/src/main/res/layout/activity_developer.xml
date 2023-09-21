@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
+    android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:orientation="vertical"
+    android:background="@drawable/layout_border"
+    android:layout_margin="20dp"
+    android:paddingBottom="10dp"
     tools:context=".DeveloperActivity">
 
 
@@ -28,7 +30,6 @@
         android:textColor="#000"
         android:textSize="30px"
         android:text="@string/developer" />
-
 
 
 </LinearLayout>

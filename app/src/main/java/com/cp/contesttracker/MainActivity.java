@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +24,7 @@ import com.cp.contesttracker.contest.Contest;
 import com.cp.contesttracker.contest.ContestAdapter;
 import com.cp.contesttracker.contest.FetchCallBack;
 import com.cp.contesttracker.contest.FetchContest;
+import com.cp.contesttracker.notification.NotificationUtils;
 import com.cp.contesttracker.problemsuggestion.AppPreferences;
 import com.cp.contesttracker.problemsuggestion.PreferencesActivity;
 import com.cp.contesttracker.problemsuggestion.WebViewActivity;
@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         FetchContest fetchContest = new FetchContest();
         fetchContest.fetchAPI(this, this);
 
+        NotificationUtils.createNotificationChannel(this);
 
     }
 
@@ -273,6 +273,8 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
         contestAdapter.updateData(filteredContest);
         contestAdapter.notifyDataSetChanged();
     }
+
+
 
 
 

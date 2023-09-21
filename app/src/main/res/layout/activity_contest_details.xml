@@ -98,4 +98,29 @@
         android:textColor="#2E65A6"
 
         />
+
+    <Button
+        android:layout_marginTop="40dp"
+        android:id="@+id/reminderBtn"
+        android:layout_below="@+id/contest_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#4CAF50"
+        android:textColor="#fff"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:text=" Set Reminder " />
+
+    <EditText
+        android:id="@+id/beforeContestTime"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@+id/reminderBtn"
+        android:layout_below="@+id/contest_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Before 30 Minutes"
+        android:inputType="number" />
+
 </RelativeLayout>
