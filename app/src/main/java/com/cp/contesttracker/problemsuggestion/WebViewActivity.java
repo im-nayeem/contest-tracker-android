@@ -59,30 +59,32 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 Intent intent1 = getIntent();
-                if(intent1.getStringExtra("type").equals("recommendation"))
+                if(Objects.requireNonNull(intent1.getStringExtra("type")).equals("recommendation"))
                 {
                     view.loadUrl("javascript:(function() { " +
-                            "var container = document.getElementsByClassName('container')[0];" +
-                            "var practiceTab = document.getElementById('practice_tab');" +
+                            "document.querySelector('footer').innerHTML = '';"+
+                            "document.getElementsByClassName('navbar')[0].style.display = 'none';"+
+                            "let container = document.getElementsByClassName('container')[0];" +
+                            "let practiceTab = document.getElementById('practice_tab');" +
                             "container.innerHTML = practiceTab.innerHTML;" +
-                            "document.getElementsByClassName('navbar')[0].innerHTML = '<h4>Practice Recommendation:(Scroll Down)</h4>'"+
                             "})()");
                 }
                 else
                 {
                     view.loadUrl("javascript:(function() { " +
-                            "var container = document.querySelector('.container');" +
-                            "if (container) {" +
-                            "   var rows = container.querySelectorAll('.row');" +
-                            "   for (var i = 0; i < rows.length; i++) {" +
-                            "       if (i>1 && i <= 9) {" +
-                            "           rows[i].style.display = 'block';" +
-                            "       } else {" +
-                            "           rows[i].style.display = 'none';" +
-                            "       }" +
+                            "document.querySelector('footer').innerHTML = '';"+
+                            "document.getElementsByClassName('navbar')[0].style.display = 'none';"+
+                            "let rootContainer = document.createElement('div');" +
+                            "let container = document.querySelector('.container');" +
+                            "if(container) {" +
+                            "   let rows = container.querySelectorAll('.row');" +
+                            "   for(let i = 0; i < rows.length; i++) {" +
+                            "       if(i>1 && i <= 9) {" +
+                            "           rootContainer.appendChild(rows[i]);" +
+                            "       } "+
                             "   }" +
                             "}" +
-                            "document.getElementsByClassName('navbar')[0].innerHTML = ''"+
+                            "container.innerHTML = rootContainer.innerHTML;" +
                             "})()");
                 }
                 progressBar.setVisibility(View.GONE);

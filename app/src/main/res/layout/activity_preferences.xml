@@ -94,7 +94,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contest Notification"
+            android:text="Contest Notification (Under Development)"
             android:textSize="18sp"
             android:textColor="#000"
             android:layout_marginBottom="10dp"

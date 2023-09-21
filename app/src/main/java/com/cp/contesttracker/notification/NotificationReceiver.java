@@ -7,10 +7,8 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.cp.contesttracker.R;
-import com.cp.contesttracker.Utility;
 import com.cp.contesttracker.contest.Contest;
 import com.cp.contesttracker.contest.ContestDetailsActivity;
-
 import java.io.Serializable;
 
 public class NotificationReceiver extends BroadcastReceiver {
@@ -18,9 +16,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // Retrieve the notification ID from the intent
         int notificationId = intent.getIntExtra("notification_id", 0);
-
         Contest contest =  (Contest) intent.getSerializableExtra("contest");
-
 
         // Build and show the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationUtils.CHANNEL_ID)
@@ -31,10 +27,10 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         // Create an explicit intent for an Activity in your app
         // Set what happens on tap to the notification
-        Intent intent1 = new Intent(context, ContestDetailsActivity.class);
-        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent1.putExtra("contest", (Serializable)contest);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
+        Intent responseIntent = new Intent(context, ContestDetailsActivity.class);
+        responseIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        responseIntent.putExtra("contest", (Serializable)contest);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, responseIntent, PendingIntent.FLAG_IMMUTABLE);
         builder.setContentIntent(pendingIntent);
 
         // Notify

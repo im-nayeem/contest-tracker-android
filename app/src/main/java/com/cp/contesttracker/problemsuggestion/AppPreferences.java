@@ -31,8 +31,9 @@ public class AppPreferences {
         editor.putString("ojHandles", ojHandles.toString());
 
         try {
+            this.recommenderUrl = "";
             if(!ojHandles.getString("cf").trim().equals(""))
-                this.recommenderUrl = "cf/" + ojHandles.getString("cf").trim() + "+";
+                this.recommenderUrl += "cf/" + ojHandles.getString("cf").trim() + "+";
             if(!ojHandles.getString("cc").trim().equals(""))
                 this.recommenderUrl += "cc/" + ojHandles.getString("cc").trim() + "+";
             if(!ojHandles.getString("sp").trim().equals(""))
