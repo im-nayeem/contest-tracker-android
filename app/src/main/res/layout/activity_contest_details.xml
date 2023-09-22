@@ -104,16 +104,18 @@
         android:id="@+id/reminderBtn"
         android:layout_below="@+id/contest_link"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#4CAF50"
+        android:layout_height="35dp"
+        android:background="@drawable/round_button"
         android:textColor="#fff"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:text=" Set Reminder " />
+        android:text=" Set Reminder "
+        android:textAllCaps="false"
+        />
 
     <EditText
         android:id="@+id/beforeContestTime"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="35dp"
         android:layout_marginStart="10dp"
         android:layout_toRightOf="@+id/reminderBtn"
         android:layout_below="@+id/contest_link"

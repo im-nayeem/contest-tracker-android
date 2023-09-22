@@ -97,22 +97,24 @@ public class ContestDetailsActivity extends AppCompatActivity {
                             "Reminder can be set only if the contest is in next 2 days and maximum 23 hours(1380 minutes) before the contest.");
                     return;
                 }
+
                 // set the time when the notification to be triggered.
                 long futureTimeMillis = contestTimeInMills - timeOffset;
+                int uniqueId = Utility.getUniqueId();
 
                 // create Intent that will be fired when the alarm is triggered.
                 Intent notificationIntent = new Intent(ContestDetailsActivity.this, NotificationReceiver.class);
                 notificationIntent.putExtra("contest", (Serializable) contest);
-                // use unique ID for each notification if needed
-                notificationIntent.putExtra("notification_id", 0);
+                // unique ID for each notification if needed (in case multiple notification)
+                notificationIntent.putExtra("notification_id", uniqueId);
 
                 // create a PendingIntent to wrap the notificationIntent
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(
                         ContestDetailsActivity.this,
-                        0, // unique request code in case of multiple alarms
-                        notificationIntent,
-                        PendingIntent.FLAG_IMMUTABLE
-                );
+                                uniqueId,          // unique request code in case of multiple alarms
+                                notificationIntent,
+                                PendingIntent.FLAG_IMMUTABLE
+                                );
 
                 // get the AlarmManager service.
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -124,7 +126,12 @@ public class ContestDetailsActivity extends AppCompatActivity {
                         pendingIntent
                 );
 
-                String successfullMsg = "Reminder is successfully set for " + timeOffset/60000 +" minutes before the contest.";
+                int remainingHours = (int) ((futureTimeMillis - System.currentTimeMillis()) / 3600000);
+                int remainingMinutes = (int) (((futureTimeMillis - System.currentTimeMillis()) / 60000) % 60);
+                String successfullMsg = "Reminder is successfully set for " + timeOffset/60000 +
+                                        " minutes before the contest. \nYou will get reminder after "+ remainingHours +
+                                        " hours and " + remainingMinutes +
+                                        " minutes from now.";
                 Utility.showDialogueMessage(ContestDetailsActivity.this, "Successfull", successfullMsg);
             }
         });

@@ -7,6 +7,7 @@ import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.cp.contesttracker.R;
+import com.cp.contesttracker.Utility;
 import com.cp.contesttracker.contest.Contest;
 import com.cp.contesttracker.contest.ContestDetailsActivity;
 import java.io.Serializable;
@@ -30,7 +31,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         Intent responseIntent = new Intent(context, ContestDetailsActivity.class);
         responseIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         responseIntent.putExtra("contest", (Serializable)contest);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, responseIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, Utility.getUniqueId() + 1, responseIntent, PendingIntent.FLAG_IMMUTABLE);
         builder.setContentIntent(pendingIntent);
 
         // Notify

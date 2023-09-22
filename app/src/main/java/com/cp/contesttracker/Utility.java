@@ -75,7 +75,7 @@ public class Utility {
         calendar.setTime(date);
 
         // If time is greater than two days return -1
-        if((calendar.getTimeInMillis() - System.currentTimeMillis()) / (24 * 60 * 60000) > 2)
+        if((calendar.getTimeInMillis() - System.currentTimeMillis()) / (24 * 3600000) > 2)
             return -1;
 
         // Get the time in milliseconds in the local timezone
@@ -95,6 +95,16 @@ public class Utility {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public static int getUniqueId() {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        int minutesOfDay = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
+        int secondsOfDay = minutesOfDay*60 + calendar.get(Calendar.SECOND);
+
+        return (month * 10 + dayOfMonth) * 100000 + secondsOfDay;
     }
 
 }
