@@ -1,5 +1,5 @@
 # Contest Tracker - Android Application
-[Download](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.2.0/contest-tracker.apk)
+[Download](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.3.0/contest-tracker.apk)
 
 [![Total Downloads](https://img.shields.io/github/downloads/im-nayeem/contest-tracker-android/total.svg)](https://github.com/im-nayeem/contest-tracker-android/releases)
 
@@ -8,27 +8,20 @@ Contest Tracker is a comprehensive and user-friendly Android Application that al
 ## Features
 
 - **Contest Schedule**: Stay updated with the latest competitive programming contests from popular online judges.
-- **Filtering By OJ**: Filter contests based on your preferred online judges to see only the ones that interest you.
-- **Filtering By Date**: Filter contests based on dates, find contests that are going to be held on the selected date.
+- **Contest Reminder Notification**: Receive notifications a few minutes or hours before the contest starts(you can prefer the contest and minutes before the contest to notify) to ensure you never miss an important event.
+- **Filtering By OJ and Date**: Filter contests based on both your preferred online judges and dates to see only the ones that interest you and to find contests that are going to be held on a specific date.
 - **Contest Details**: Get detailed information about each contest, including start time, host, and contest link.
 - **Practice Problem Recommendations**: Receive topic-based practice problem recommendations from your selected online judges to enhance your coding skills.
 - **Ratings and Solved Statistics**: Keep track of your contest ratings and solved problem statistics to monitor your progress.
 - **User-Friendly Interface**: The app provides an intuitive and visually appealing user interface for easy navigation and interaction.
-
-## Planned Features
-
-In future releases, I plan to integrate the following features to enhance your experiences with Contest Tracker:
-
-- **Notification Alerts**: Receive notifications 20 or 30 minutes before the contest starts (preferred by the user) to ensure you never miss an important event.
-
-
+  
 
 ## Installation
 
 To install Contest Tracker on your Android device, follow these steps:
 
 1. Ensure your device is running Android 8.0 (Oreo) or a newer version.
-2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.0.3/contest-tracker.apk).
+2. Download the Contest Tracker APK from this [link](https://github.com/im-nayeem/contest-tracker-android/releases/download/v1.3.0/contest-tracker.apk).
 3. Open the APK file on your device and follow the installation prompts.
 4. Once installed, launch the Contest Tracker application and start exploring upcoming contests.
 
@@ -38,12 +31,14 @@ Thank you for choosing Contest Tracker. I hope it helps you in your competitive 
 Nayeem Hossain
 
 ## Screenshots
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/e52680e1-004e-4610-ac1d-65c3c7a4a921)
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/14ae1137-1a41-4838-8707-8cd777e1109a)
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/7e4d6a95-bacf-45db-a64b-857b8faf1eab)
-![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/2d195b5d-0102-494a-b9d0-155ea88cf731)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/c0b83313-937f-4dab-a045-d7b39a813053)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/26376822-ef40-4e54-bb09-22503459828f)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/221c0fd7-6f1d-416b-95cb-0e2719605945)
+![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/7d2d31df-8aa2-4d9d-b05b-9b4055b1d03c)
 ![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/305358b7-0ad3-4713-a067-3742d21e922a)
 ![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/fb64e11c-fabc-4d96-80ab-9b07e624e6fa)
 ![image](https://github.com/im-nayeem/contest-tracker-android/assets/77660934/9c0e7ce2-f461-43a3-848c-feacbd0625c4)
+
+
 
 
