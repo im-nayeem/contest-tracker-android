@@ -1,12 +1,13 @@
 package com.cp.contesttracker.contest;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.cp.contesttracker.Utility;
 import com.cp.contesttracker.database.DatabaseQuery;
@@ -23,12 +24,14 @@ public class ReminderNotification implements View.OnClickListener {
     private EditText timesAhead;
     private Context context;
     private DatabaseQuery databaseQuery;
+    private NotificationCallback notificationCallback;
 
-    public ReminderNotification(Context context, Contest contest, EditText timesAhead) {
+    public ReminderNotification(Context context, Contest contest, EditText timesAhead, NotificationCallback notificationCallback) {
         this.context = context;
         this.contest = contest;
         this.timesAhead = timesAhead;
         this.databaseQuery = new DatabaseQuery(this.context);
+        this.notificationCallback = notificationCallback;
     }
 
     @Override
@@ -95,6 +98,23 @@ public class ReminderNotification implements View.OnClickListener {
                 " minutes before the contest. \nYou will get reminder after "+ remainingHours +
                 " hours and " + remainingMinutes +
                 " minutes from now.";
-        Utility.showDialogueMessage(context, "Successfull", successfullMsg);
+        dialogueMessageWithCallback("Successfull", successfullMsg);
     }
+
+
+    private void dialogueMessageWithCallback(String title, String details) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(details)
+                .setTitle(title)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Handle the OK button click if needed
+                        dialog.dismiss(); // Close the dialog
+                        notificationCallback.onNotificationSet();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 }

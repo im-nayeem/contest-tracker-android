@@ -18,7 +18,7 @@ import com.cp.contesttracker.database.DatabaseQuery;
 
 import java.util.List;
 
-public class ContestDetailsActivity extends AppCompatActivity {
+public class ContestDetailsActivity extends AppCompatActivity implements NotificationCallback {
     private TextView contestName;
     private TextView contestTime;
     private TextView contestDuration;
@@ -59,6 +59,7 @@ public class ContestDetailsActivity extends AppCompatActivity {
         this.contestDuration.setText(this.contest.getDuration());
         this.contestHost.setText(this.contest.getHost());
         this.contestLink.setText("Click to see details: \n" + this.contest.getContestLink());
+
         List<String> list = databaseQuery.getAllSchedule(this.contest.getId());
         if(list.size() != 0)
         {
@@ -91,8 +92,14 @@ public class ContestDetailsActivity extends AppCompatActivity {
 
     private void setReminderBtnClickListener() {
 
-        ReminderNotification reminderNotification = new ReminderNotification(this, contest, beforeContest);
+        ReminderNotification reminderNotification = new ReminderNotification(this, contest, beforeContest, this);
         reminderBtn.setOnClickListener(reminderNotification);
+
     }
 
+    @Override
+    public void onNotificationSet() {
+        finish();
+        startActivity(this.getIntent());
+    }
 }
