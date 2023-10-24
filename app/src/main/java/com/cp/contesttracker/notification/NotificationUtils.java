@@ -14,7 +14,7 @@ public class NotificationUtils {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Contest Notification", importance);
             channel.setDescription("Send Notification Before The Contest Starts");
             channel.enableVibration(true);
-            channel.setVibrationPattern(new long[]{ 3000, 3000});
+            channel.setVibrationPattern(new long[]{2000, 2000});
 
             NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);

@@ -16,7 +16,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // Retrieve the notification ID from the intent
-        int notificationId = intent.getIntExtra("notification_id", 0);
+        int notificationId = intent.getIntExtra("notification_id", Utility.getUniqueId());
         Contest contest =  (Contest) intent.getSerializableExtra("contest");
 
         // Build and show the notification

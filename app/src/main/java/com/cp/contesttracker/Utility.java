@@ -15,6 +15,9 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class Utility {
+
+    private Utility() {}
+
     public static Date parseTimeStamp(String timestamp){
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);

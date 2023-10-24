@@ -48,7 +48,8 @@ public class DatabaseQuery {
                 while (cursor.moveToNext())
                 {
                     String minutesAhead = String.valueOf(cursor.getInt(cursor.getColumnIndex("minutes_ahead")));
-                    list.add(minutesAhead);
+                    list.add(minutesAhead + " minutes");
+
                 }
             }
         } catch (Exception e) {

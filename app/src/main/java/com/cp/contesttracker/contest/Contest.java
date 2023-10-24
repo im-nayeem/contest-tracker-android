@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Contest implements Serializable {
+    private String id;
     private String name = null;
     private Date timeStamp = null;
     private String host = null;
@@ -18,15 +19,17 @@ public class Contest implements Serializable {
     private String contestLink = null;
     private boolean isToday = false;
 
-    private static String[] hostList = {"Codeforces", "Codechef", "Atcoder", "Topcoder", "Toph", "Leetcode", "Codejam", "Hackercup", "Kickstart"};
+    private static String[] hostList =
+            {"Codeforces", "Codechef", "Atcoder", "Topcoder", "Toph", "Leetcode", "Codejam", "Hackercup", "Kickstart"};
 
-    public Contest(String name, Date timeStamp, long duration, String host, String contestLink) {
+    public Contest(String name, Date timeStamp, long duration, String host, String contestLink, String id) {
         this.name = name;
         this.timeStamp = timeStamp;
         this.duration = duration;
         this.host = host;
         this.contestLink = contestLink;
         this.isToday = Utility.isToday(timeStamp);
+        this.id = id;
     }
 
     public Contest(String name, Date timeStamp, String host) {
@@ -77,6 +80,9 @@ public class Contest implements Serializable {
         return durationString.toString();
     }
 
+    public String getId() {
+        return id;
+    }
 
     public static String[] getHostList(){
         return hostList;

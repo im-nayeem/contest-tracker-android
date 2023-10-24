@@ -2,22 +2,21 @@ package com.cp.contesttracker.contest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cp.contesttracker.R;
-import com.cp.contesttracker.Utility;
-import com.cp.contesttracker.notification.NotificationReceiver;
+import com.cp.contesttracker.database.DatabaseQuery;
 
-import java.io.Serializable;
+import java.util.List;
 
 public class ContestDetailsActivity extends AppCompatActivity {
     private TextView contestName;
@@ -28,6 +27,7 @@ public class ContestDetailsActivity extends AppCompatActivity {
     private Contest contest;
     private EditText beforeContest;
     private Button reminderBtn;
+    private DatabaseQuery databaseQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class ContestDetailsActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Contest Details");
 
+        this.databaseQuery = new DatabaseQuery(this);
         setData();
     }
     private void setData()
@@ -58,6 +59,15 @@ public class ContestDetailsActivity extends AppCompatActivity {
         this.contestDuration.setText(this.contest.getDuration());
         this.contestHost.setText(this.contest.getHost());
         this.contestLink.setText("Click to see details: \n" + this.contest.getContestLink());
+        List<String> list = databaseQuery.getAllSchedule(this.contest.getId());
+        if(list.size() != 0)
+        {
+            TextView notificationListHeader = findViewById(R.id.notfication_list_header);
+            notificationListHeader.setText("You've set notifications before: ");
+            ListView listView = findViewById(R.id.notfication_list);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
+            listView.setAdapter(adapter);
+        }
     }
 
     private void setContestLinkClickListener() {
@@ -80,61 +90,9 @@ public class ContestDetailsActivity extends AppCompatActivity {
     }
 
     private void setReminderBtnClickListener() {
-        reminderBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                long timeOffset = 30 * 60 * 1000;
-                String temp = beforeContest.getText().toString();
-                if(!temp.equals(""))
-                {
-                    timeOffset = Long.parseLong(temp) * 60000;
-                }
-                long contestTimeInMills = Utility.getDateInMills(contest.getTime());
-                if(contestTimeInMills == -1 || contestTimeInMills - timeOffset < System.currentTimeMillis() || timeOffset/60000 > 1380)
-                {
-                    Utility.showDialogueMessage(ContestDetailsActivity.this, "Can't Set Reminder",
-                            "Reminder can be set only if the contest is in next 2 days and maximum 23 hours(1380 minutes) before the contest.");
-                    return;
-                }
-
-                // set the time when the notification to be triggered.
-                long futureTimeMillis = contestTimeInMills - timeOffset;
-                int uniqueId = Utility.getUniqueId();
-
-                // create Intent that will be fired when the alarm is triggered.
-                Intent notificationIntent = new Intent(ContestDetailsActivity.this, NotificationReceiver.class);
-                notificationIntent.putExtra("contest", (Serializable) contest);
-                // unique ID for each notification if needed (in case multiple notification)
-                notificationIntent.putExtra("notification_id", uniqueId);
-
-                // create a PendingIntent to wrap the notificationIntent
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                        ContestDetailsActivity.this,
-                                uniqueId,          // unique request code in case of multiple alarms
-                                notificationIntent,
-                                PendingIntent.FLAG_IMMUTABLE
-                                );
-
-                // get the AlarmManager service.
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-                // schedule the alarm for the future time.
-                alarmManager.set(
-                        AlarmManager.RTC_WAKEUP,
-                        futureTimeMillis,
-                        pendingIntent
-                );
-
-                int remainingHours = (int) ((futureTimeMillis - System.currentTimeMillis()) / 3600000);
-                int remainingMinutes = (int) (((futureTimeMillis - System.currentTimeMillis()) / 60000) % 60);
-                String successfullMsg = "Reminder is successfully set for " + timeOffset/60000 +
-                                        " minutes before the contest. \nYou will get reminder after "+ remainingHours +
-                                        " hours and " + remainingMinutes +
-                                        " minutes from now.";
-                Utility.showDialogueMessage(ContestDetailsActivity.this, "Successfull", successfullMsg);
-            }
-        });
+        ReminderNotification reminderNotification = new ReminderNotification(this, contest, beforeContest);
+        reminderBtn.setOnClickListener(reminderNotification);
     }
 
 }
