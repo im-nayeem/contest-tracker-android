@@ -10,6 +10,9 @@ import com.cp.contesttracker.R;
 import com.cp.contesttracker.Utility;
 import com.cp.contesttracker.contest.Contest;
 import com.cp.contesttracker.contest.ContestDetailsActivity;
+import com.cp.contesttracker.database.DatabaseHelper;
+import com.cp.contesttracker.database.DatabaseQuery;
+
 import java.io.Serializable;
 
 public class NotificationReceiver extends BroadcastReceiver {
@@ -18,6 +21,10 @@ public class NotificationReceiver extends BroadcastReceiver {
         // Retrieve the notification ID from the intent
         int notificationId = intent.getIntExtra("notification_id", Utility.getUniqueId());
         Contest contest =  (Contest) intent.getSerializableExtra("contest");
+
+        int timeOffset = (int) intent.getLongExtra("timeOffset", 30);
+        DatabaseQuery databaseQuery = new DatabaseQuery(context);
+        databaseQuery.deleteNotificationSchedule(contest.getId(), timeOffset);
 
         // Build and show the notification
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationUtils.CHANNEL_ID)

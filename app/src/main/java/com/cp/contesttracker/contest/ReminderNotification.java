@@ -43,6 +43,7 @@ public class ReminderNotification implements View.OnClickListener {
         {
             timeOffset = Long.parseLong(minutesAhead);
         }
+
         List<String> list = databaseQuery.getAllSchedule(contest.getId());
         if(list.contains(timeOffset + " minutes"))
         {
@@ -50,6 +51,7 @@ public class ReminderNotification implements View.OnClickListener {
                     timeOffset + " minutes before the contest");
             return;
         }
+
         timeOffset *= 60000;
         long contestTimeInMills = Utility.getDateInMills(contest.getTime());
 
@@ -67,6 +69,7 @@ public class ReminderNotification implements View.OnClickListener {
         // create Intent that will be fired when the alarm is triggered.
         Intent notificationIntent = new Intent(context, NotificationReceiver.class);
         notificationIntent.putExtra("contest", (Serializable) contest);
+        notificationIntent.putExtra("timeOffset", timeOffset/60000);
 
         // unique ID for each notification
         notificationIntent.putExtra("notification_id", uniqueId);
@@ -79,7 +82,7 @@ public class ReminderNotification implements View.OnClickListener {
                 PendingIntent.FLAG_IMMUTABLE
         );
 
-        // get the AlarmManager service.
+        // get the AlarmManager service
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 
         // schedule the alarm for the future time.
@@ -108,8 +111,7 @@ public class ReminderNotification implements View.OnClickListener {
                 .setTitle(title)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Handle the OK button click if needed
-                        dialog.dismiss(); // Close the dialog
+                        dialog.dismiss();
                         notificationCallback.onNotificationSet();
                     }
                 });

@@ -17,7 +17,7 @@ public class DatabaseQuery {
         this.context = context;
     }
 
-    public long insertNotificationSchedule(String contestId, int minutesAhead) {
+    public void insertNotificationSchedule(String contestId, int minutesAhead) {
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
@@ -31,12 +31,26 @@ public class DatabaseQuery {
         } finally {
             sqLiteDatabase.close();
         }
-        return id;
+//        return id;
+    }
+
+    public void deleteNotificationSchedule(String contestId, int minutesAhead) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        try {
+            sqLiteDatabase.delete(TABLE_NAME, "contest_id=? AND minutes_ahead=?",
+                    new String[]{contestId, String.valueOf(minutesAhead)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqLiteDatabase.close();
+        }
     }
 
     public List<String> getAllSchedule(String contestId) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor cursor = null;
         List<String> list = new ArrayList<>();
@@ -49,7 +63,6 @@ public class DatabaseQuery {
                 {
                     String minutesAhead = String.valueOf(cursor.getInt(cursor.getColumnIndex("minutes_ahead")));
                     list.add(minutesAhead + " minutes");
-
                 }
             }
         } catch (Exception e) {

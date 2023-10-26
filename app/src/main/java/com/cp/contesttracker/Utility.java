@@ -92,8 +92,7 @@ public class Utility {
                 .setTitle(title)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // Handle the OK button click if needed
-                        dialog.dismiss(); // Close the dialog
+                        dialog.dismiss();
                     }
                 });
         AlertDialog dialog = builder.create();
