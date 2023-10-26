@@ -20,7 +20,7 @@ public class Contest implements Serializable {
     private boolean isToday = false;
 
     private static String[] hostList =
-            {"Codeforces", "Codechef", "Atcoder", "Topcoder", "Toph", "Leetcode", "Codejam", "Hackercup", "Kickstart"};
+            {"Codeforces", "Codechef", "Atcoder", "Topcoder", "Toph", "Leetcode", "Hackercup"};
 
     public Contest(String name, Date timeStamp, long duration, String host, String contestLink, String id) {
         this.name = name;
@@ -97,9 +97,9 @@ public class Contest implements Serializable {
         hostNameToLink.put("Topcoder", "topcoder.com");
         hostNameToLink.put("Toph", "toph.co");
         hostNameToLink.put("Leetcode", "leetcode.com");
-        hostNameToLink.put("Codejam", "codingcompetitions.withgoogle.com/codejam");
+//        hostNameToLink.put("Codejam", "codingcompetitions.withgoogle.com/codejam");
         hostNameToLink.put("Hackercup", "facebook.com/hackercup");
-        hostNameToLink.put("Kickstart", "codingcompetitions.withgoogle.com/kickstart");
+//        hostNameToLink.put("Kickstart", "codingcompetitions.withgoogle.com/kickstart");
         hostNameToLink.put("Atcoder", "atcoder.jp");
 
         return hostNameToLink;
