@@ -39,14 +39,12 @@ public class ReminderNotification implements View.OnClickListener {
 
         long timeOffset = 30;
         String minutesAhead = timesAhead.getText().toString();
-        if(!minutesAhead.equals(""))
-        {
+        if (!minutesAhead.equals("")) {
             timeOffset = Long.parseLong(minutesAhead);
         }
 
         List<String> list = databaseQuery.getAllSchedule(contest.getId());
-        if(list.contains(timeOffset + " minutes"))
-        {
+        if (list.contains(timeOffset + " minutes")) {
             Utility.showDialogueMessage(context, "Duplicate Reminder", "Reminder notification is already set for " +
                     timeOffset + " minutes before the contest");
             return;
@@ -55,8 +53,7 @@ public class ReminderNotification implements View.OnClickListener {
         timeOffset *= 60000;
         long contestTimeInMills = Utility.getDateInMills(contest.getTime());
 
-        if(contestTimeInMills == -1 || contestTimeInMills - timeOffset < System.currentTimeMillis() || timeOffset/60000 > 1380)
-        {
+        if (contestTimeInMills == -1 || contestTimeInMills - timeOffset < System.currentTimeMillis() || timeOffset / 60000 > 1380) {
             Utility.showDialogueMessage(context, "Can't Set Reminder",
                     "Reminder can be set only if the contest is in next 2 days and maximum 23 hours(1380 minutes) before the contest.");
             return;
@@ -69,7 +66,7 @@ public class ReminderNotification implements View.OnClickListener {
         // create Intent that will be fired when the alarm is triggered.
         Intent notificationIntent = new Intent(context, NotificationReceiver.class);
         notificationIntent.putExtra("contest", (Serializable) contest);
-        notificationIntent.putExtra("timeOffset", timeOffset/60000);
+        notificationIntent.putExtra("timeOffset", timeOffset / 60000);
 
         // unique ID for each notification
         notificationIntent.putExtra("notification_id", uniqueId);
@@ -92,13 +89,13 @@ public class ReminderNotification implements View.OnClickListener {
                 pendingIntent
         );
 
-        databaseQuery.insertNotificationSchedule(contest.getId(), (int) (timeOffset / 60000) );
+        databaseQuery.insertNotificationSchedule(contest.getId(), (int) (timeOffset / 60000));
 
         int remainingHours = (int) ((futureTimeMillis - System.currentTimeMillis()) / 3600000);
         int remainingMinutes = (int) (((futureTimeMillis - System.currentTimeMillis()) / 60000) % 60);
 
-        String successfullMsg = "Reminder is successfully set for " + timeOffset/60000 +
-                " minutes before the contest. \nYou will get reminder after "+ remainingHours +
+        String successfullMsg = "Reminder is successfully set for " + timeOffset / 60000 +
+                " minutes before the contest. \nYou will get reminder after " + remainingHours +
                 " hours and " + remainingMinutes +
                 " minutes from now.";
         dialogueMessageWithCallback("Successfull", successfullMsg);

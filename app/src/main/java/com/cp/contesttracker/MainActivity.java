@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
     private ActionBarDrawerToggle actionBarDrawerToggle;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,11 +97,6 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
 
     // toggle navigation drawer
     @Override
@@ -125,15 +119,13 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
                     Intent intent = new Intent(MainActivity.this, DeveloperActivity.class);
                     startActivity(intent);
                     return true;
-                }
-                else if (id == R.id.preferences) {
+                } else if (id == R.id.preferences) {
                     Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
                     startActivity(intent);
                     return true;
                 } else if (id == R.id.recommender || id == R.id.stat) {
                     AppPreferences preferences = new AppPreferences(MainActivity.this);
-                    if(preferences.getRecommenderUrl().equals(""))
-                    {
+                    if (preferences.getRecommenderUrl().equals("")) {
                         Intent intent = new Intent(MainActivity.this, PreferencesActivity.class);
                         startActivity(intent);
                         return true;
@@ -164,8 +156,7 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         this.allContestList = allContestList;
         // sort contests in ascending order according to time
-        for(Map.Entry<String,List<Contest>> entry : this.allContestList.entrySet())
-        {
+        for (Map.Entry<String, List<Contest>> entry : this.allContestList.entrySet()) {
             Collections.sort(entry.getValue(), new Comparator<Contest>() {
                 @Override
                 public int compare(Contest o1, Contest o2) {
@@ -195,11 +186,11 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
         String temp[] = Contest.getHostList();
 
-        final String[] items = new String[temp.length+1];
+        final String[] items = new String[temp.length + 1];
         items[0] = "All";
 
-        for(int i=0; i<temp.length; i++)
-            items[i+1] = temp[i];
+        for (int i = 0; i < temp.length; i++)
+            items[i + 1] = temp[i];
 
         final Spinner spinner = findViewById(R.id.filter_spinner);
 
@@ -263,19 +254,14 @@ public class MainActivity extends AppCompatActivity implements FetchCallBack {
 
     // filter contest according to date and update recyclerview
     private void filterContestByDate(String date) {
-        List<Contest>filteredContest = new ArrayList<>();
-        for (Contest contest: this.currentContestList) {
-            if(Utility.isDateMatched(date, contest.getTime()))
-            {
+        List<Contest> filteredContest = new ArrayList<>();
+        for (Contest contest : this.currentContestList) {
+            if (Utility.isDateMatched(date, contest.getTime())) {
                 filteredContest.add(contest);
             }
         }
         contestAdapter.updateData(filteredContest);
         contestAdapter.notifyDataSetChanged();
     }
-
-
-
-
 
 }

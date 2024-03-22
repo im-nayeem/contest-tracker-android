@@ -15,7 +15,6 @@ import com.cp.contesttracker.R;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
     List<Contest> contestList = null;
@@ -25,7 +24,6 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         this.contestList = contestList;
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -46,11 +44,10 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         viewHolder.host.setText(contestList.get(position).getHost());
 
 
-        if(contestList.get(position).isToday()) {
+        if (contestList.get(position).isToday()) {
             Drawable backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.active_layout_border);
             viewHolder.view.setBackground(backgroundDrawable);
-        }
-        else {
+        } else {
 //            viewHolder.view.setBackgroundColor(Color.parseColor("#E9F9FAFF"));
             Drawable backgroundDrawable = ContextCompat.getDrawable(context, R.drawable.layout_border);
             viewHolder.view.setBackground(backgroundDrawable);
@@ -74,8 +71,7 @@ public class ContestAdapter extends RecyclerView.Adapter<ContestViewHolder> {
         return contestList.size();
     }
 
-    public void updateData(List<Contest> lst)
-    {
+    public void updateData(List<Contest> lst) {
         this.contestList = lst;
     }
 

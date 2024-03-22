@@ -24,7 +24,7 @@ public class DatabaseQuery {
         ContentValues contentValues = new ContentValues();
         contentValues.put("contest_id", contestId);
         contentValues.put("minutes_ahead", minutesAhead);
-        try{
+        try {
             id = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,10 +57,8 @@ public class DatabaseQuery {
         try {
             cursor = sqLiteDatabase.query(TABLE_NAME, null,
                     "contest_id=?", new String[]{contestId}, null, null, null);
-            if(cursor != null)
-            {
-                while (cursor.moveToNext())
-                {
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
                     String minutesAhead = String.valueOf(cursor.getInt(cursor.getColumnIndex("minutes_ahead")));
                     list.add(minutesAhead + " minutes");
                 }
@@ -68,7 +66,7 @@ public class DatabaseQuery {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if(cursor != null)
+            if (cursor != null)
                 cursor.close();
             sqLiteDatabase.close();
         }

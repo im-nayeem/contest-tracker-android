@@ -7,15 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
 import com.cp.contesttracker.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.Objects;
 
 public class PreferencesActivity extends AppCompatActivity {
     private TextView codeforces, spoj, codechef;
     private CheckBox checkBoxCF, checkBoxCodechef, checkBoxAtcoder, checkBoxToph;
     private Button saveButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +27,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Settings & Preferences");
 
-        codeforces  = findViewById(R.id.editTextCF);
+        codeforces = findViewById(R.id.editTextCF);
         codechef = findViewById(R.id.editTextCodechef);
         spoj = findViewById(R.id.editTextSPOJ);
         saveButton = findViewById(R.id.saveButton);
@@ -88,7 +92,6 @@ public class PreferencesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
 
 }

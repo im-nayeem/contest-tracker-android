@@ -46,7 +46,8 @@ public class Contest implements Serializable {
     public String getTimeString() {
         return Utility.formatTimeStamp(timeStamp);
     }
-    public Date getTime(){
+
+    public Date getTime() {
         return timeStamp;
     }
 
@@ -58,21 +59,21 @@ public class Contest implements Serializable {
         return contestLink;
     }
 
-    public boolean isToday(){ return this.isToday; }
+    public boolean isToday() {
+        return this.isToday;
+    }
 
     public String getDuration() {
         long totalMinutes = this.duration / 60;
-        long days = totalMinutes / (60*24);
+        long days = totalMinutes / (60 * 24);
         long hours = (totalMinutes % (60 * 24)) / 60;
         long minutes = (totalMinutes % (60 * 24)) % 60;
 
         StringBuilder durationString = new StringBuilder();
-        if(days != 0)
-        {
+        if (days != 0) {
             durationString.append(days + " days, ");
         }
-        if(hours != 0)
-        {
+        if (hours != 0) {
             durationString.append(hours + " hours, ");
         }
         durationString.append(minutes + " minutes");
@@ -84,15 +85,15 @@ public class Contest implements Serializable {
         return id;
     }
 
-    public static String[] getHostList(){
+    public static String[] getHostList() {
         return hostList;
     }
 
-    public static HashMap<String,String> getHostNameToLink(){
+    public static HashMap<String, String> getHostNameToLink() {
 
         HashMap<String, String> hostNameToLink = new HashMap<>();
 
-        hostNameToLink.put("Codeforces","codeforces.com");
+        hostNameToLink.put("Codeforces", "codeforces.com");
         hostNameToLink.put("Codechef", "codechef.com");
         hostNameToLink.put("Topcoder", "topcoder.com");
         hostNameToLink.put("Toph", "toph.co");
@@ -105,7 +106,7 @@ public class Contest implements Serializable {
         return hostNameToLink;
     }
 
-    public static HashMap<String, String> getLinkToHostName(){
+    public static HashMap<String, String> getLinkToHostName() {
 
         HashMap<String, String> linkToHostName = new HashMap<>();
 

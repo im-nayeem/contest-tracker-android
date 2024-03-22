@@ -16,25 +16,26 @@ import java.util.TimeZone;
 
 public class Utility {
 
-    private Utility() {}
+    private Utility() {
+    }
 
-    public static Date parseTimeStamp(String timestamp){
+    public static Date parseTimeStamp(String timestamp) {
 
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
         inputFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         Date outputDate = null;
 
         try {
-                outputDate = inputFormat.parse(timestamp);
+            outputDate = inputFormat.parse(timestamp);
 
         } catch (ParseException e) {
-            Log.e("Error: ","Invalid date format");
+            Log.e("Error: ", "Invalid date format");
         }
         return outputDate;
 
     }
 
-    public static String formatTimeStamp(Date timeStamp){
+    public static String formatTimeStamp(Date timeStamp) {
         SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM '|' EEEE '|' hh:mm a", Locale.ENGLISH);
         outputFormat.setTimeZone(TimeZone.getTimeZone("Asia/Dhaka"));
         return outputFormat.format(timeStamp);
@@ -78,7 +79,7 @@ public class Utility {
         calendar.setTime(date);
 
         // If time is greater than two days return -1
-        if((calendar.getTimeInMillis() - System.currentTimeMillis()) / (24 * 3600000) > 2)
+        if ((calendar.getTimeInMillis() - System.currentTimeMillis()) / (24 * 3600000) > 2)
             return -1;
 
         // Get the time in milliseconds in the local timezone
@@ -99,13 +100,12 @@ public class Utility {
         dialog.show();
     }
 
-
     public static int getUniqueId() {
         Calendar calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         int minutesOfDay = calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE);
-        int secondsOfDay = minutesOfDay*60 + calendar.get(Calendar.SECOND);
+        int secondsOfDay = minutesOfDay * 60 + calendar.get(Calendar.SECOND);
 
         return (month * 10 + dayOfMonth) * 100000 + secondsOfDay;
     }

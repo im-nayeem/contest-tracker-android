@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public static synchronized DatabaseHelper getInstance(Context context) {
-        if(databaseHelper != null)
+        if (databaseHelper != null)
             return databaseHelper;
         else
             return new DatabaseHelper(context);

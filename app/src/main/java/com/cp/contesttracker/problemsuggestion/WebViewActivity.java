@@ -29,7 +29,7 @@ public class WebViewActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if(intent.getStringExtra("type").equals("stat"))
+        if (intent.getStringExtra("type").equals("stat"))
             Objects.requireNonNull(getSupportActionBar()).setTitle("Ratings & Statistics");
         else
             Objects.requireNonNull(getSupportActionBar()).setTitle("Practice Recommendation");
@@ -44,7 +44,7 @@ public class WebViewActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
 
 
-        myWebView.setWebViewClient(new WebViewClient(){
+        myWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 String url = request.getUrl().toString();
@@ -59,21 +59,18 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 Intent intent1 = getIntent();
-                if(Objects.requireNonNull(intent1.getStringExtra("type")).equals("recommendation"))
-                {
+                if (Objects.requireNonNull(intent1.getStringExtra("type")).equals("recommendation")) {
                     view.loadUrl("javascript:(function() { " +
-                            "document.querySelector('footer').innerHTML = '';"+
-                            "document.getElementsByClassName('navbar')[0].style.display = 'none';"+
+                            "document.querySelector('footer').innerHTML = '';" +
+                            "document.getElementsByClassName('navbar')[0].style.display = 'none';" +
                             "let container = document.getElementsByClassName('container')[0];" +
                             "let practiceTab = document.getElementById('practice_tab');" +
                             "container.innerHTML = practiceTab.innerHTML;" +
                             "})()");
-                }
-                else
-                {
+                } else {
                     view.loadUrl("javascript:(function() { " +
-                            "document.querySelector('footer').innerHTML = '';"+
-                            "document.getElementsByClassName('navbar')[0].style.display = 'none';"+
+                            "document.querySelector('footer').innerHTML = '';" +
+                            "document.getElementsByClassName('navbar')[0].style.display = 'none';" +
                             "let rootContainer = document.createElement('div');" +
                             "let container = document.querySelector('.container');" +
                             "if(container) {" +
@@ -81,7 +78,7 @@ public class WebViewActivity extends AppCompatActivity {
                             "   for(let i = 0; i < rows.length; i++) {" +
                             "       if(i>1 && i <= 9) {" +
                             "           rootContainer.appendChild(rows[i]);" +
-                            "       } "+
+                            "       } " +
                             "   }" +
                             "}" +
                             "container.innerHTML = rootContainer.innerHTML;" +

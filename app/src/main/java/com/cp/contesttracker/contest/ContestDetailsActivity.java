@@ -52,8 +52,8 @@ public class ContestDetailsActivity extends AppCompatActivity implements Notific
         this.databaseQuery = new DatabaseQuery(this);
         setData();
     }
-    private void setData()
-    {
+
+    private void setData() {
         this.contestName.setText(this.contest.getName());
         this.contestTime.setText(this.contest.getTimeString());
         this.contestDuration.setText(this.contest.getDuration());
@@ -61,8 +61,7 @@ public class ContestDetailsActivity extends AppCompatActivity implements Notific
         this.contestLink.setText("Click to see details: \n" + this.contest.getContestLink());
 
         List<String> list = databaseQuery.getAllSchedule(this.contest.getId());
-        if(list.size() != 0)
-        {
+        if (list.size() != 0) {
             TextView notificationListHeader = findViewById(R.id.notfication_list_header);
             notificationListHeader.setText("You've set notifications before: ");
             ListView listView = findViewById(R.id.notfication_list);
@@ -80,7 +79,7 @@ public class ContestDetailsActivity extends AppCompatActivity implements Notific
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(contestLink));
 
                 // Check if there is any web browser installed on phone
-                if(browserIntent.resolveActivity(getPackageManager()) != null) {
+                if (browserIntent.resolveActivity(getPackageManager()) != null) {
                     startActivity(browserIntent);
                 } else {
                     Toast.makeText(ContestDetailsActivity.this,

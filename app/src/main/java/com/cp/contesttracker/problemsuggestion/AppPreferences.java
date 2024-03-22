@@ -10,7 +10,7 @@ public class AppPreferences {
     private Context context = null;
     private SharedPreferences sharedPref = null;
     private JSONObject ojHandles = null;
-    private  JSONObject notificationPrefs = null;
+    private JSONObject notificationPrefs = null;
     private String recommenderUrl = null;
 
     public AppPreferences(Context context) {
@@ -32,11 +32,11 @@ public class AppPreferences {
 
         try {
             this.recommenderUrl = "";
-            if(!ojHandles.getString("cf").trim().equals(""))
+            if (!ojHandles.getString("cf").trim().equals(""))
                 this.recommenderUrl += "cf/" + ojHandles.getString("cf").trim() + "+";
-            if(!ojHandles.getString("cc").trim().equals(""))
+            if (!ojHandles.getString("cc").trim().equals(""))
                 this.recommenderUrl += "cc/" + ojHandles.getString("cc").trim() + "+";
-            if(!ojHandles.getString("sp").trim().equals(""))
+            if (!ojHandles.getString("sp").trim().equals(""))
                 this.recommenderUrl += "sp/" + ojHandles.getString("sp").trim();
 
         } catch (JSONException e) {
@@ -60,8 +60,8 @@ public class AppPreferences {
         return notificationPrefs;
     }
 
-    public String getRecommenderUrl(){
-        if(this.recommenderUrl.equals(""))
+    public String getRecommenderUrl() {
+        if (this.recommenderUrl.equals(""))
             return recommenderUrl;
         return "https://recommender.codedrills.io/profile?handles=" + this.recommenderUrl;
     }

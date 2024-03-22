@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.cp.contesttracker.R;
 
 // ViewHolder class for recycler view
-
 public class ContestViewHolder extends RecyclerView.ViewHolder {
     View view;
     TextView name;

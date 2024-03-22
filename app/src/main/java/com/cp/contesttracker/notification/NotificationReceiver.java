@@ -33,7 +33,6 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentText(contest.getTimeString())
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        // Create an explicit intent for an Activity in your app
         // Set what happens on tap to the notification
         Intent responseIntent = new Intent(context, ContestDetailsActivity.class);
         responseIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
